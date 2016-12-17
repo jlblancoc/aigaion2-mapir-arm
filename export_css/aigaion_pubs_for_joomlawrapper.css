@@ -1,0 +1,45 @@
+/*
+	CSS for Joomla wrapper of publications
+	(c) Juan Antonio Fernandez Madrigal, 2008
+*/
+
+ul.aigaion_publist { /* Unordered list of publications */
+                       font-family:arial; font-size:12px; color:black;
+						text-align:justify;list-style-type:none;
+                   }
+
+li.aigaion_publine { /* One publication or division section (type/year) */
+                       padding-bottom:6px;
+			list-style-type: square;
+                   }
+
+li.aigaion_nobulletline { /* One publication or division section (type/year) */
+			padding-bottom:6px;
+                        list-style-type:none;
+                   }
+
+
+div.aigaion_divtype { /* Division for showing the type of some publications (book, journal, etc.) */
+                       text-align:center; font-size:14px; font-weight:bold; color:#1d5734;
+						padding-bottom:20px; padding-top:26px;
+                    }
+
+div.aigaion_divyear { /* Division for showing the year of some publications */
+                       font-size:12px; font-weight:bold; color:#576b2c;
+                       padding-bottom:12px; padding-top:12px;
+                    }
+
+/* Enlaces */
+a.aigaion_enlace:link {
+						color:blue; text-decoration:none;
+					}
+a.aigaion_enlace:visited {
+						color:blue; text-decoration:none;
+					}
+a.aigaion_enlace:hover {
+						color:red; text-decoration:none;
+					}
+a.aigaion_enlace:active {
+						color:blue; text-decoration:none;
+					}					
+

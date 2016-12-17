@@ -1,0 +1,33 @@
+/*
+	CSS for JL's publications page
+	(c) Juan Antonio Fernandez Madrigal, 2008
+*/
+
+ul.aigaion_publist { /* Unordered list of publications */
+			list-style-type:none;
+                   }
+
+li.aigaion_nobulletline { /* One publication or division section (type/year) */
+                       font-style:times; font-size:12px; color:black; padding-bottom:9px; width:95%;
+			list-style-type:none;
+			text-indent:15px;
+                   }
+
+li.aigaion_publine { /* One publication or division section (type/year) */
+                       font-style:times; font-size:12px; color:black; padding-bottom:9px; width:95%;
+			/* list-style-type: square;*/
+			text-indent:-5px;
+                  }
+
+
+div.aigaion_divtype { /* Division for showing the type of some publications (book, journal, etc.) */
+			font-style: times; font-size:18px; font-weight:bold; color:blue;
+                       text-align:center; padding-top:20px; padding-bottom:10px;
+					}
+
+div.aigaion_divyear { /* Division for showing the year of some publications */
+                       font-style:times; font-size:16px; font-weight:bold; color:black; margin-bottom:22px; margin-top:20px;
+			width:100px; border-bottom: thin solid #aa4444;
+					}
+
+

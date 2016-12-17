@@ -1,0 +1,76 @@
+/*
+	CSS for Joomla wrapper of publications	
+	(c) Javier G. Monroy, 2015
+*/
+
+.aigaion_publication:first-child {
+  border-top: 1px solid #CCC;
+}
+.aigaion_publication {
+  overflow:hidden;
+  /* border-bottom: 1px solid #CCC;*/
+  padding:10px 0;
+  font-family:arial; 
+  font-size:12px; 
+  color:black;
+  text-align:justify;
+  list-style-type:none;
+}
+.aigaion_publication .aigaion_publication_image {
+  float:left;
+  margin-right:15px;
+}
+.aigaion_publication .aigaion_publication_image > img, .aigaion_publication .aigaion_publication_image > a > img {
+  width:90px;
+  display:block;
+  border-radius:4px;
+}
+.aigaion_publication .aigaion_publication_info {
+  overflow:hidden; /* magic trick to inhibit float around image */
+}
+
+.aigaion_publication .aigaion_publication_info > p{
+  margin:0px;
+}
+
+.aigaion_publication .title {
+  font-weight:bold;
+  font-size:15px;
+  padding-top:4px;
+}
+.aigaion_publication .download a {
+  display:block;
+  padding:5px 10px 0 0;
+  float:left;
+}
+
+/* Enlaces */
+a.aigaion_enlace:link {
+  color:black; text-decoration:none;
+}
+a.aigaion_enlace:visited {
+  color:black; text-decoration:none;
+}
+a.aigaion_enlace:hover {
+  color:#07B; 
+  text-decoration:none;
+}
+a.aigaion_enlace:active {
+  color:#07B; 
+  text-decoration:none;
+}					
+li.aigaion_nobulletline { /* One publication or division section (type/year) */
+  padding-bottom:6px;
+  list-style-type:none;
+  margin-top: 0px;
+  font-size: 20px;
+}
+
+div.aigaion_divtype { /* Division for showing the type of some publications (book, journal, etc.) */
+  text-align:center; 
+  font-size:18px; 
+  font-weight:bold; 
+  color:#07B;
+  padding-bottom:0px; 
+  padding-top:0px;
+}
