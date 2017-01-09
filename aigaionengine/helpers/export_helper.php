@@ -209,7 +209,9 @@ require_once(APPPATH."include/utf8/trim.php");
             }
         }
         
-        //hmmm -- could have done better layout here for userfields
+/* JLBC 2017/01/09: Do not export userfields to BibTex:
+
+       //hmmm -- could have done better layout here for userfields
         if (utf8_trim($publication->userfields)!='') {
             if (!$first) {
                 $result .= ",\n";
@@ -220,7 +222,7 @@ require_once(APPPATH."include/utf8/trim.php");
                 $result .= $CI->bibtex2utf8->utf8ToBibCharsFromString($publication->userfields);
             }
         }
-        
+*/        
         
         //close entry
         $result .= "\n}\n";    
