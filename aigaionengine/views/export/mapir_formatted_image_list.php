@@ -26,11 +26,19 @@ cssfile: CSS file name (with extension, without path), that must be in http://ba
 */
 
 // Definitions
-$pathaigaion = 'http://mapir.isa.uma.es/mapirpubsite';     // Removed http://xxxx/ to make more generic...
-if (!isset($header)||($header==null))$header='';
-if (!isset($withlinks)) $withlinks='1';
-if (!isset($sort)) $sort='type';
-if (!isset($maxyearsfromnow)||($maxyearsfromnow=='none')) $maxyearsfromnow=100;
+$pathaigaion = AIGAION_ROOT_URL ;     // Removed http://xxxx/ to make more generic...
+if (!isset($header) || ($header == null)) {
+    $header = '';
+}
+if (!isset($withlinks)) {
+    $withlinks = '1';
+}
+if (!isset($sort)) {
+    $sort = 'type';
+}
+if (!isset($maxyearsfromnow) || ($maxyearsfromnow == 'none')) {
+    $maxyearsfromnow = 100;
+}
 $thisYear = date("Y");
 $maxyeartopublish = (intval($thisYear) - intval($maxyearsfromnow));
 $typenames = array(	'Article' => 'Journals',

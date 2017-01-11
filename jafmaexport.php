@@ -60,7 +60,7 @@
 	$css=$_GET['css'];
 
 	//$urlcall='http://mapir.isa.uma.es/_utils/aigaion/index.php/export/'.$mode.'/'.$id.'/'.$withlinks.'/'.$css;
-	$urlcall='http://mapir.isa.uma.es/mapirpubsite/index.php/export/'.$mode.'/'.$id.'/'.$withlinks.'/'.$css;
+	$urlcall=AIGAION_ROOT_URL.'index.php/export/'.$mode.'/'.$id.'/'.$withlinks.'/'.$css;
 
 	if (parmexists('filtertype')) $urlcall.='/'.$_GET['filtertype'];
 ?>

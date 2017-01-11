@@ -18,20 +18,24 @@ withlinks: 1 for showing links to aigaion in each publication, 0 for not showing
 cssfile: CSS file name (with extension, without path), that must be in http://babel.isa.uma.es/_utils/aigaion/export_css
 
 */
-if (!isset($header)||($header==null))$header='';
+if (!isset($header) || ($header == null)) {
+    $header = '';
+}
 
-$pathaigaion='http://mapir.isa.uma.es/mapirpubsite';     // Removed http://xxxx/ to make more generic...
+$pathaigaion= AIGAION_ROOT_URL;
 
-
-if (!isset($withlinks)) $withlinks='1';
+if (!isset($withlinks)) {
+    $withlinks = '1';
+}
 
 $ext = "html";
 $mime="text/html";
 $pre = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
    "http://www.w3.org/TR/REC-html40/strict.dtd">'."\n";
 $pre.="<html>\n<head>\n<title>".$header."</title>\n";
-if (strlen($cssfile)>0)
-	$pre.='<link rel="stylesheet" href="'.$pathaigaion.'/export_css/'.$cssfile.'" type="text/css">'."\n";
+if (strlen($cssfile) > 0) {
+    $pre.='<link rel="stylesheet" href="' . $pathaigaion . '/export_css/' . $cssfile . '" type="text/css">' . "\n";
+}
 $pre.="</head>\n<body>\n";
 if (strlen($cssfile)>0)
 {
@@ -39,18 +43,19 @@ if (strlen($cssfile)>0)
 	$nf='export_css/'.$pi['filename'].'.head';
 	if (file_exists($nf))
 	{
-        if (false === $fh = fopen($nf, 'rb', FALSE)) $txt='';
-		else
-		{
-          clearstatcache();
-          if ($fsize = @filesize($nf)) $txt = fread($fh, $fsize);
-		  else 
-		  {
-              $txt = '';
-              while (!feof($fh)) $txt .= fread($fh, 8192);
-          }
-          fclose($fh);
-		}
+            if (false === $fh = fopen($nf, 'rb', FALSE)) {
+            $txt = '';
+        } else {
+            clearstatcache();
+            if ($fsize = @filesize($nf))
+                $txt = fread($fh, $fsize);
+            else {
+                $txt = '';
+                while (!feof($fh))
+                    $txt .= fread($fh, 8192);
+            }
+            fclose($fh);
+        }
 //		$txt=file_get_contents($pi['filename'].'.head');
 		$pre.=$txt;
 	}
