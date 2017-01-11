@@ -161,9 +161,11 @@ echo "</script>";
         foreach($userfields_map as $userfield_name => $userfield_value )
         {
           //print 'key: '.$userfield_name. ' ==> ' . $userfield_value."\n";
-          $valCol .= "`".$userfield_name."`:" . "<span title='".sprintf(__('%s field'), $class)."'>".form_textarea(array('name' => $key.$userfield_name, 
+          $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".
+                  "`".$userfield_name."`: ".
+                  form_textarea(array('name' => $key.$userfield_name, 
                                                                      'id' => $key.$userfield_name, 
-                                                                     'cols' => '87', 
+                                                                     'cols' => '70', 
                                                                      'rows' => '1', 
                                                                      'alt' => $class, 
                                                                      'autocomplete' => 'off', 
