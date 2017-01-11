@@ -158,7 +158,7 @@ echo "</script>";
           preg_match_all("/([^,= ]+)=([^,= ]+)/", $publication->$key, $r); // See: http://stackoverflow.com/a/4924004/1631514
           $userfields_map = array_combine($r[1], $r[2]);
 
-        foreach($result as $userfield_name => $userfield_value )
+        foreach($userfields_map as $userfield_name => $userfield_value )
         {
           //print 'key: '.$userfield_name. ' ==> ' . $userfield_value."\n";
           $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".form_textarea(array('name' => $key.$userfield_name, 
