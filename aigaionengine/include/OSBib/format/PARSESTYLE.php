@@ -135,7 +135,7 @@ class PARSESTYLE
 		$search = join('|', $this->map->$type);
 		if($date)
 			$search .= '|' . 'date';
-		$subjectArray = split("\|", $subject);
+		$subjectArray = explode("\|", $subject);
 		list($subjectArray, $alternates) = $this->findAlternateFields($subjectArray, $search);
 		$sizeSubject = sizeof($subjectArray);
 // Loop each field string

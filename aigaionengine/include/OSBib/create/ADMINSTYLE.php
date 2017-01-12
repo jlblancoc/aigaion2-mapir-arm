@@ -250,7 +250,7 @@ class ADMINSTYLE
 					{
 						if($array['_NAME'] == 'independent')
 						{
-							$split = split("_", $elements['_NAME']);
+							$split = explode("_", $elements['_NAME']);
 							$temp[$array['_NAME']][$split[1]] 
 							= $elements['_DATA'];
 						}
@@ -1432,7 +1432,7 @@ class ADMINSTYLE
 // footnotes can have pages field
 		if($this->footnotePages && !array_key_exists('pages', $this->map->$type))
 			$search .= '|' . 'pages';
-		$subjectArray = split("\|", $subject);
+		$subjectArray = explode("\|", $subject);
 		list($subjectArray, $alternates) = $this->findAlternateFields($subjectArray, $search);
 		$sizeSubject = sizeof($subjectArray);
 // Loop each field string
@@ -1721,7 +1721,7 @@ class ADMINSTYLE
 		{
 			if(isset($this->vars[$input]))
 			{
-				$split = split("_", $input, 2);
+				$split = explode("_", $input, 2);
 				$elementName = $split[1];
 				$fileString .= "<$elementName>" . 
 					htmlspecialchars(stripslashes($this->vars[$input])) . "</$elementName>";
@@ -1765,7 +1765,7 @@ class ADMINSTYLE
 		{
 			if(isset($this->vars[$input]))
 			{
-				$split = split("_", $input, 2);
+				$split = explode("_", $input, 2);
 				$elementName = $split[1];
 				$fileString .= "<$elementName>" . 
 					htmlspecialchars(stripslashes($this->vars[$input])) . "</$elementName>";
@@ -1820,7 +1820,7 @@ class ADMINSTYLE
 		{
 			if(isset($this->vars[$input]))
 			{
-				$split = split("_", $input, 2);
+				$split = explode("_", $input, 2);
 				$elementName = $split[1];
 				$fileString .= "<$elementName>" . 
 					htmlspecialchars(stripslashes($this->vars[$input])) . "</$elementName>";

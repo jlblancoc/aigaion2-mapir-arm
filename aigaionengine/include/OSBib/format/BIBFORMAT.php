@@ -208,7 +208,7 @@ class BIBFORMAT
 						$data = $elements['_DATA'];
 						if($array['_NAME'] == 'independent')
 						{
-							$split = split("_", $elements['_NAME']);
+							$split = explode("_", $elements['_NAME']);
 							$this->{$type}[$array['_NAME']][$split[1]] = $data;
 						}
 						else
@@ -261,7 +261,7 @@ class BIBFORMAT
 						{
 							if($fArray['_NAME'] == 'independent')
 							{
-								$split = split("_", $elements['_NAME']);
+								$split = explode("_", $elements['_NAME']);
 								$this->{$footnoteType}[$fArray['_NAME']][$split[1]] = $elements['_DATA'];
 							}
 							else
@@ -1198,13 +1198,13 @@ class BIBFORMAT
 			$firstName = $creator['firstname'];
 		else if($creator['firstname']) // Initial only of first name.  'firstname' field may actually have several 'firstnames'
 		{
-			$fn = split(" ", $creator['firstname']);
+			$fn = explode(" ", $creator['firstname']);
 			$firstTime = TRUE;
 			foreach($fn as $name)
 			{
 // May be the first name is a hyphenated name
 // We separate each part of the name separated by a -
-				$fn2 = split("-", trim($name));
+				$fn2 = explode("-", trim($name));
 				if($firstTime)
 				{
 					if(sizeof($fn2) == 1) // no hyphen
@@ -1892,11 +1892,15 @@ class BIBFORMAT
 }
 /*****
  * BIBTEXCONFIG: BibTeX Configuration class
- *****/
-class BIBTEXCONFIG{// Constructor
+ *****/
+
+class BIBTEXCONFIG
+{
+// Constructor
   function BIBTEXCONFIG()
   {
-  }
+  }
+
 // BibTeX arrays
   function bibtex()
   {
@@ -1972,7 +1976,8 @@ class BIBTEXCONFIG{// Constructor
 			      0x00FF	=>	'{\"y}',
 			      0x00A1	=>	"{\!}",
 			      0x00BF	=>	"{\?}",
-			      );//Old style with extra {} - usually array_flipped
+			      );
+//Old style with extra {} - usually array_flipped
     $this->bibtexSpChOld = array(
 				 0x00C0	=>	"{\`{A}}",
 				 0x00C1	=>	"{\'{A}}",
@@ -2034,7 +2039,8 @@ class BIBTEXCONFIG{// Constructor
 				 0x00FF	=>	'{\"{y}}',
 				 0x00A1	=>	"{\{!}}",
 				 0x00BF	=>	"{\{?}}",
-				 );// And there's more?!?!?!?!? (This is not strict bibtex.....)
+				 );
+// And there's more?!?!?!?!? (This is not strict bibtex.....)
     $this->bibtexSpChOld2 = array(
 				  0x00C0	=>	"\`{A}",
 				  0x00C1	=>	"\'{A}",
@@ -2096,7 +2102,8 @@ class BIBTEXCONFIG{// Constructor
 				  0x00FF	=>	'\"{y}',
 				  0x00A1	=>	"\{!}",
 				  0x00BF	=>	"\{?}",
-				  );// Latex code that some bibtex users may be using
+				  );
+// Latex code that some bibtex users may be using
     $this->bibtexSpChLatex = array(
 				   0x00C0	=>	"\`A",
 				   0x00C1	=>	"\'A",
