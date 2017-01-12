@@ -145,7 +145,8 @@ function &load_class($class, $instantiate = TRUE)
 
 	$name = ($class != 'Controller') ? 'CI_'.$class : $class;
 
-	$objects[$class] =& instantiate_class(new $name());
+        $tmp = new $name();
+	$objects[$class] =& instantiate_class($tmp);
 	return $objects[$class];
 }
 

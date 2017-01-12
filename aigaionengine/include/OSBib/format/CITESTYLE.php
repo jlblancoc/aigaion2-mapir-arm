@@ -432,9 +432,9 @@ class CITESTYLE
 	function grabNames($citationId)
 	{
 		if(!$this->rowSingle['creator1']) // edited book?
-			$nameIds = split(",", $this->rowSingle['creator2']);
+			$nameIds = explode(",", $this->rowSingle['creator2']);
 		else
-			$nameIds = split(",", $this->rowSingle['creator1']);
+			$nameIds = explode(",", $this->rowSingle['creator1']);
 		foreach($nameIds as $nameId)
 			$conditions[] = $this->db->formatField("id") . "=" . $this->db->tidyInput($nameId);
 		$recordset = $this->db->select(array("WKX_creator"), array("surname", "firstname", 

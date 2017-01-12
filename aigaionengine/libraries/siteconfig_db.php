@@ -24,7 +24,7 @@ class Siteconfig_db {
         foreach ($Q->result() as $R) {
             //where needed, interpret setting as other than string
             if ($R->setting == "ALLOWED_ATTACHMENT_EXTENSIONS") {
-                $value = split(",",$R->value);
+                $value = explode(",",$R->value);
             } 
             else if ($R->setting=='language')
             {
@@ -129,7 +129,7 @@ class Siteconfig_db {
         if ($CI->input->post('formname')!='siteconfig') {
             return null;
         }
-        $siteconfig->configSettings['ALLOWED_ATTACHMENT_EXTENSIONS']    = split(',',$CI->input->post('ALLOWED_ATTACHMENT_EXTENSIONS'));
+        $siteconfig->configSettings['ALLOWED_ATTACHMENT_EXTENSIONS']    = explode(',',$CI->input->post('ALLOWED_ATTACHMENT_EXTENSIONS'));
         if ($CI->input->post('ALLOW_ALL_EXTERNAL_ATTACHMENTS')=='ALLOW_ALL_EXTERNAL_ATTACHMENTS') {
             $siteconfig->configSettings['ALLOW_ALL_EXTERNAL_ATTACHMENTS'] = 'TRUE';
         } else {

@@ -63,7 +63,7 @@ class PREVIEWSTYLE
 		}
 		else
 		{
-			$templateNameArray = split("_", stripslashes($this->vars['templateName']), 2);
+			$templateNameArray = explode("_", stripslashes($this->vars['templateName']), 2);
 			if(sizeof($templateNameArray) > 1)
 				$type = $templateNameArray[1];
 			else
@@ -98,7 +98,7 @@ class PREVIEWSTYLE
 			$temp = $templateArray['independent'];
 			foreach($temp as $key => $value)
 			{
-				$split = split("_", $key);
+				$split = explode("_", $key);
 				$independent[$split[1]] = $value;
 			}
 			$templateArray['independent'] = $independent;

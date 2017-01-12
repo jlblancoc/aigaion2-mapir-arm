@@ -344,7 +344,7 @@ class CITEFORMAT
 			$ind1 = $array['independent'];
 			foreach($ind1 as $key => $value)
 			{
-				$split = split('_', $key);
+				$split = explode('_', $key);
 				$ind2[$split[1]] = $value;
 			}
 			if(isset($ind2))
@@ -728,8 +728,8 @@ class CITEFORMAT
 //			$matchArray[] = "\.{1}.*\s*(&nbsp;)*$title|\.{1}.*(&nbsp;)*\s*$title";
 //			$matchArray[] = "__WIKINDX__NEWLINEPAR____WIKINDX__NEWLINEPAR__.*\s*(&nbsp;)*$title";
 //			$matchArray[] = "(__WIKINDX__NEWLINEPAR____WIKINDX__NEWLINEPAR__).*(&nbsp;)*\s*$title";
-			$matchArray[] = "$title(?!.*\.|.*\?|.*\!|.*¿|.*¡)\s*(&nbsp;)*";
-			$matchArray[] = "$title(?!.*\.|.*\?|.*\!|.*¿|.*¡)(&nbsp;)*\s*";
+			$matchArray[] = "$title(?!.*\.|.*\?|.*\!|.*ï¿½|.*ï¿½)\s*(&nbsp;)*";
+			$matchArray[] = "$title(?!.*\.|.*\?|.*\!|.*ï¿½|.*ï¿½)(&nbsp;)*\s*";
 		}
 		if(array_key_exists('shortTitle', $this->item))
 		{
@@ -737,8 +737,8 @@ class CITEFORMAT
 			$shortTitle = preg_quote(preg_replace("/\[.*\]|\[\/.*\]/U", "", $shortTitle));
 //			$shortTitle = preg_quote($this->item['shortTitle']);
 //			$matchArray[] = "\..*\s*(&nbsp;)*.*$shortTitle|\..*(&nbsp;)*\s*.*$shortTitle";
-			$matchArray[] = "$shortTitle(?!.*\.|.*\?|.*\!|.*¿|.*¡)\s*(&nbsp;)*";
-			$matchArray[] = "$shortTitle(?!.*\.|.*\?|.*\!|.*¿|.*¡)(&nbsp;)*\s*";
+			$matchArray[] = "$shortTitle(?!.*\.|.*\?|.*\!|.*ï¿½|.*ï¿½)\s*(&nbsp;)*";
+			$matchArray[] = "$shortTitle(?!.*\.|.*\?|.*\!|.*ï¿½|.*ï¿½)(&nbsp;)*\s*";
 		}
 		if(!empty($matchArray))
 		{
@@ -1674,7 +1674,7 @@ class CITEFORMAT
 			$firstName = $creator['firstname'];
 		else if($creator['firstname']) // Initial only of first name.  'firstname' field may actually have several 'firstnames'
 		{
-			$fn = split(" ", $creator['firstname']);
+			$fn = explode(" ", $creator['firstname']);
 			$firstTime = TRUE;
 			foreach($fn as $name)
 			{
@@ -1796,7 +1796,7 @@ class CITEFORMAT
 */
 	function formatTitle($pString, $delimitLeft = FALSE, $delimitRight = FALSE)
 	{
-		$split = split($this->style['titleSubtitleSeparator'], $pString);
+		$split = explode($this->style['titleSubtitleSeparator'], $pString);
 		$this->items[$this->count]['mainTitle'] = $split[0];
 		if(!$delimitLeft)
 			$delimitLeft = '{';
