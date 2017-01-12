@@ -144,35 +144,43 @@ echo "</script>";
       }
       elseif ($key == "userfields" )
       {
-          // 1st) Show the full raw content:
+          // 1st) Show the full raw content (but disabled for edit)
           $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".form_textarea(array('name' => $key, 
                                                                      'id' => $key, 
-                                                                     'cols' => '87', 
+                                                                     'cols' => '78', 
                                                                      'rows' => '3', 
                                                                      'alt' => $class, 
+                                                                     'type' => 'hidden',
                                                                      'autocomplete' => 'off', 
                                                                      'class' => $class), 
-                                                               $publication->$key)."</span>\n";
+                                                               $publication->$key, ' style="visibility: hidden;" ')."</span>\n";
           
           // 2nd) Split in fields like: "KEY=VALUE, KEY=VALUE", ...
           preg_match_all("/([^,= ]+)=([^,= ]+)/", $publication->$key, $r); // See: http://stackoverflow.com/a/4924004/1631514
           $userfields_map = array_combine($r[1], $r[2]);
+          
+          // Recognized data fields:
+          $myfields = [ 'img_url', 'rank_indexname', 'rank_pos_in_category', 'rank_num_in_category', 'rank_cat_name' ];
 
-        foreach($userfields_map as $userfield_name => $userfield_value )
+        foreach($myfields as $field_name)
         {
-          //print 'key: '.$userfield_name. ' ==> ' . $userfield_value."\n";
-          $valCol .= "<span title='".sprintf(__('%s field'), $class)."'>".
-                  "`".$userfield_name."`: ".
-                  form_textarea(array('name' => $key.$userfield_name, 
-                                                                     'id' => $key.$userfield_name, 
-                                                                     'cols' => '70', 
-                                                                     'rows' => '1', 
-                                                                     'alt' => $class, 
-                                                                     'autocomplete' => 'off', 
-                                                                     'class' => $class), 
-                                                               $userfield_value)."</span>\n";
+          //print 'key: '.$userfield_name. ' ==> ' . $userfield_value."\n";            
+          if (array_key_exists($field_name, $userfields_map)) {
+                $field_value = $userfields_map[$field_name];
+            } else {
+                $field_value = '';
+            }
+
+            $valCol .= "<br/><span title='".sprintf(__('%s field'), $class)."'>".
+                  "<code>".$field_name."</code>: &nbsp; ".
+                  form_input(array('name' => $key.'_'.$field_name, 
+                        'id' => $key.'_'.$field_name, 
+                        'size' => '70', 
+                        'alt' => $field_name, 
+                        'autocomplete' => 'on', 
+                        'class' => $class), 
+                  $field_value)."</span>\n";
         }
-        
       }
       else 
       {
