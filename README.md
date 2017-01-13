@@ -13,7 +13,7 @@ Generadores de listados:
 
 URL call: 
 * [formato de la URL](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/mapir_pub_export.php#L87)
-* [How to call it](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/HowTo_Use_It.txt)
+* [How to call it](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/HowTo_Use_It.md)
 
 
 ## Importar listado desde Python
