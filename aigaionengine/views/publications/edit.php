@@ -10,7 +10,9 @@ $this->load->helper('translation');
 echo "<script language='javascript'>";
 include_once(AIGAION_WEBCONTENT_DIR.'javascript/authorselection.js');
 echo "</script>";
-  
+
+include_once('aigaionengine/helpers/my_userfields.php');
+
 ?>
 <div class='publication'>
 <script language="javascript">
@@ -159,11 +161,13 @@ echo "</script>";
           preg_match_all("/([^,= ]+)=([^,= ]+)/", $publication->$key, $r); // See: http://stackoverflow.com/a/4924004/1631514
           $userfields_map = array_combine($r[1], $r[2]);
           
-          // Recognized data fields:
-          $myfields = [ 'img_url', 'rank_indexname', 'rank_pos_in_category', 'rank_num_in_category', 'rank_cat_name' ];
 
-        foreach($myfields as $field_name)
+           $valCol .="<table noborder>\n";
+        foreach($USERFIELDS_DEFINITIONS as $field_def)
         {
+            $field_name = $field_def['name'];
+            $field_desc = $field_def['desc'];
+            
           //print 'key: '.$userfield_name. ' ==> ' . $userfield_value."\n";            
           if (array_key_exists($field_name, $userfields_map)) {
                 $field_value = $userfields_map[$field_name];
@@ -171,16 +175,26 @@ echo "</script>";
                 $field_value = '';
             }
 
-            $valCol .= "<br/><span title='".sprintf(__('%s field'), $class)."'>".
-                  "<code>".$field_name."</code>: &nbsp; ".
-                  form_input(array('name' => $key.'_'.$field_name, 
-                        'id' => $key.'_'.$field_name, 
-                        'size' => '70', 
-                        'alt' => $field_name, 
-                        'autocomplete' => 'on', 
-                        'class' => $class), 
-                  $field_value)."</span>\n";
+            $valCol .= "<tr>".
+                  "<td>".
+                    "<span title='".sprintf(__('%s field'), $class)."'>".
+                    "<code>".$field_name."</code>:</span>".
+                  "</td>".
+                  "<td>".
+                    form_input(array('name' => $key.'_'.$field_name, 
+                          'id' => $key.'_'.$field_name, 
+                          'size' => '30', 
+                          'alt' => $field_name, 
+                          'autocomplete' => 'on', 
+                          'class' => $class), 
+                    $field_value).
+                  "</td>".
+                  "<td>".
+                    $field_desc.
+                  "</td>".
+                  "</tr>\n";
         }
+           $valCol .="</table>\n";
       }
       else 
       {
