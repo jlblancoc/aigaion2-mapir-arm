@@ -15,6 +15,21 @@ URL call:
 * [formato de la URL](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/mapir_pub_export.php#L87)
 * [How to call it](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/HowTo_Use_It.md)
 
+## Videotutoriales
+
+* Parte 1: Introducción y uso básico
+
+[![Aigaion2 videotutorial](http://img.youtube.com/vi/fh6b9UBsrI8/0.jpg)](http://www.youtube.com/watch?v=fh6b9UBsrI8 "Tutorial: Aigaion II (gestor listados de publicaciones online) - (Parte 1) ")
+
+* Parte 2: Uso de topics para agrupar publicaciones
+
+[![Aigaion2 videotutorial](http://img.youtube.com/vi/vblxmbGiP4A/0.jpg)](http://www.youtube.com/watch?v=vblxmbGiP4A "Tutorial: Aigaion II (gestor listados de publicaciones online) - (Parte 2) ")
+
+* Parte 3: Estadísticas sobre cuartiles y terciles
+
+(Write me!)
+
+
 
 ## Importar listado desde Python
 
