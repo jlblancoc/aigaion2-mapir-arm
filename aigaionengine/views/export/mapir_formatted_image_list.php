@@ -1,6 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
+include_once('aigaionengine/helpers/my_userfields.php');
+
 /**
+---------------- JLBC JAN/2017 ------------------
+-- Use new userfields data to generate stats for journal rankings
+
 ---------------- MLOPEZ 13/10/2016 ------------------
 -- note" field is shown in parentheses
 
@@ -166,9 +171,14 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	
 	// 0) IMAGE
 	echo "<div class='aigaion_publication_image'>"."\n";
-	$imgPath = strval($nonxrefs[$pub_id]->userfields);
-	if ($imgPath == '')
-		$imgPath = 'http://mapir.isa.uma.es/jgmonroy/images/papers/logo_pub_list.png';	//Default image
+
+        $userfields_map = my_parse_pub_userfields($nonxrefs[$pub_id]);
+	if (isset($userfields_map['img_url']) && $userfields_map['img_url'] != '') {
+            $imgPath = $userfields_map['img_url'];
+        } else {
+            //Default image
+            $imgPath = 'http://mapir.isa.uma.es/jgmonroy/images/papers/logo_pub_list.png';
+        } 
 	
 	if ($hasURL)
 	{
@@ -245,7 +255,13 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	}
 
 	// Year:
-	echo strval($nonxrefs[$pub_id]->year).'. ';
+	echo strval($nonxrefs[$pub_id]->year);
+        
+        // Ranking:
+        my_print_pub_ranking($nonxrefs[$pub_id]);
+        
+        // end of pub entry:
+        echo '. ';
 	echo '</p>';
 			
 	// 5) Downloads 	

@@ -1,6 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php
+include_once('aigaionengine/helpers/my_userfields.php');
 /**
+
+---------------- JLBC JAN/2017 ------------------
+-- Use new userfields data to generate stats for journal rankings
 
 --------------- JAFMA 16/05/2008 --------------------
 -- JLBC 1/02/2010: A few changes to avoid calling the Aigaion slow formatting functions
@@ -105,14 +109,17 @@ $pubscount=0;
 
 // For each publication type, make a list of the pub_id's included in that category:
 $myPubsIndex=array();
-foreach($typenames as $pubtypforcmp=>$pubtype) 
-	$myPubsIndex[$pubtype]=array();
+foreach ($typenames as $pubtypforcmp => $pubtype) {
+    $myPubsIndex[$pubtype] = array();
+}
 
 foreach($typenames as $pubtypforcmp=>$pubtype) 
 {
-	foreach ($nonxrefs as $pub_id=>$publication) 
-		if (!strcmp($nonxrefs[$pub_id]->pub_type,$pubtypforcmp))
-			$myPubsIndex[$pubtype][$pub_id]=$pub_id;  // Is there something like std::vector<> in PHP, or only std::map<>???
+    foreach ($nonxrefs as $pub_id => $publication) {
+        if (!strcmp($nonxrefs[$pub_id]->pub_type, $pubtypforcmp)) {
+            $myPubsIndex[$pubtype][$pub_id] = $pub_id;
+        }
+    }  // Is there something like std::vector<> in PHP, or only std::map<>???
 }
 
 	// Auxiliary function:
@@ -219,8 +226,15 @@ foreach($typenames as $pubtypforcmp=>$pubtype)
 		}
 
 	
-		// Year:
-		echo strval($nonxrefs[$pub_id]->year).'. ';
+
+                // Year:
+                echo strval($nonxrefs[$pub_id]->year);
+
+                // Ranking:
+                my_print_pub_ranking($nonxrefs[$pub_id]);
+
+                // end of pub entry:
+                echo '. ';
 
 		// 5) Put only one set of parentheses: ( bibtex, PDF, URL ) 
 		$hasLinks= (intval($withlinks)==1);

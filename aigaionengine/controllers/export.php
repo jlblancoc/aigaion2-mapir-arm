@@ -274,10 +274,10 @@ class Export extends Controller {
         $this->publication_db->enforceMerge = True;
         $exportdata['format'] = 'html';        
         $exportdata['style'] = 'IEEETRANS';
-		$exportdata['withlinks'] = $withlinks;
-		$exportdata['cssfile'] = $cssfile;
-		$exportdata['sort'] = $orderby;
-		$exportdata['maxyearsfromnow'] = $maxyearsfromnow;
+        $exportdata['withlinks'] = $withlinks;
+        $exportdata['cssfile'] = $cssfile;
+        $exportdata['sort'] = $orderby;
+        $exportdata['maxyearsfromnow'] = $maxyearsfromnow;
 
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getForAuthorAsOrderedMap($author->author_id,$exportdata['sort'],$filtertype);
