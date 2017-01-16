@@ -164,7 +164,8 @@ class Export extends Controller {
     Export all (accessible) entries from one topic
     
 	Fails with error message when one of:
-	    non existing topic_id requested	    
+	    non existing topic_id requested
+	    
 	Parameters passed via URL segments:
 	    3rd: topic_id
 		4th: 1 for showing links to individual publications, 0 for not.
@@ -194,30 +195,32 @@ class Export extends Controller {
 	        redirect ('');
 	    }
 	    $exportdata = array();
-        $userlogin = getUserLogin();
 
-        $this->publication_db->enforceMerge = True;
-        $exportdata['format'] = 'html';        
-        $exportdata['style'] = 'IEEETRANS';
-		$exportdata['withlinks'] = $withlinks;
-		$exportdata['cssfile'] = $cssfile;
-		$exportdata['sort'] = $orderby;
-		$exportdata['maxyearsfromnow'] = $maxyearsfromnow;
+            $this->publication_db->enforceMerge = True;
+            $exportdata['format'] = 'html';        
+            $exportdata['style'] = 'IEEETRANS';
+            $exportdata['withlinks'] = $withlinks;
+            $exportdata['cssfile'] = $cssfile;
+            $exportdata['sort'] = $orderby;
+            $exportdata['maxyearsfromnow'] = $maxyearsfromnow;
 		
-        #collect to-be-exported publications 
-        $publicationMap = $this->publication_db->getForTopicAsOrderedMap($topic->topic_id,$exportdata['sort'],$filtertype);
-        #split into publications and crossreffed publications, adding crossreffed publications as needed
-        $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
-        $pubs = $splitpubs[0]; // array con un objeto publicacion (con campos iguales a los de un registro de la BBDD) por cada publicacion
-        $xrefpubs = $splitpubs[1]; // Este siempre estara vacio
+            #collect to-be-exported publications 
+            $publicationMap = $this->publication_db->getForTopicAsOrderedMap($topic->topic_id,$exportdata['sort'],$filtertype);
+            #split into publications and crossreffed publications, adding crossreffed publications as needed
+            $splitpubs = $this->publication_db->resolveXref($publicationMap,false);
+            $pubs = $splitpubs[0]; // array con un objeto publicacion (con campos iguales a los de un registro de la BBDD) por cada publicacion
+            $xrefpubs = $splitpubs[1]; // Este siempre estara vacio
         
-		#agrega el primer attachment, si hay
-		foreach ($pubs as $pub_id=>$publication) 
-		{
-			$atts=$this->attachment_db->getAttachmentsForPublication($pub_id);
-			if (count($atts)>0)	$pubs[$pub_id]->firstattachment=$atts[0]->location;
-			else $pubs[$pub_id]->firstattachment='';
-		}
+            #agrega el primer attachment, si hay
+            foreach ($pubs as $pub_id=>$publication) 
+            {
+                $atts=$this->attachment_db->getAttachmentsForPublication($pub_id);
+                if (count($atts) > 0) {
+                $pubs[$pub_id]->firstattachment = $atts[0]->location;
+            } else {
+                $pubs[$pub_id]->firstattachment = '';
+            }
+        }
 
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
@@ -237,7 +240,8 @@ class Export extends Controller {
     Export all (accessible) entries from one topic
     
 	Fails with error message when one of:
-	    non existing topic_id requested	    
+	    non existing topic_id requested
+	    
 	Parameters passed via URL segments:
 	    3rd: author_id
 		4th: 1 for showing links to individual publications, 0 for not.
@@ -260,14 +264,12 @@ class Export extends Controller {
 	    
 		if ($filtertype == 'none'){ $filtertype = ''; }
 			
-	    $config = array();
 	    $author = $this->author_db->getByID($author_id);
 	    if ($author==null) {
 	        appendErrorMessage('Export requested for non existing author<br/>');
 	        redirect ('');
 	    }
 	    $exportdata = array();
-        $userlogin = getUserLogin();
 
         $this->publication_db->enforceMerge = True;
         $exportdata['format'] = 'html';        
@@ -284,13 +286,16 @@ class Export extends Controller {
         $pubs = $splitpubs[0]; // array con un objeto publicacion (con campos iguales a los de un registro de la BBDD) por cada publicacion
         $xrefpubs = $splitpubs[1]; // Este siempre estara vacio
         
-		#agrega el primer attachment, si hay
-		foreach ($pubs as $pub_id=>$publication) 
-		{
-			$atts=$this->attachment_db->getAttachmentsForPublication($pub_id);
-			if (count($atts)>0)	$pubs[$pub_id]->firstattachment=$atts[0]->location;
-			else $pubs[$pub_id]->firstattachment='';
-		}
+        #agrega el primer attachment, si hay
+        foreach ($pubs as $pub_id=>$publication) 
+        {
+            $atts=$this->attachment_db->getAttachmentsForPublication($pub_id);
+            if (count($atts) > 0) {
+                $pubs[$pub_id]->firstattachment = $atts[0]->location;
+            } else {
+                $pubs[$pub_id]->firstattachment = '';
+            }
+        }
 
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
