@@ -44,8 +44,8 @@ class Export extends Controller {
             return;
 	    }
 	    $exportdata = array();
-        $userlogin = getUserLogin();
-        //for export, bibtex should NOT merge crossrefs; ris and formatted SHOULD merge crossrefs
+
+            //for export, bibtex should NOT merge crossrefs; ris and formatted SHOULD merge crossrefs
         switch ($type) {
             case 'bibtex':
                 $this->publication_db->suppressMerge = True;
@@ -119,8 +119,8 @@ class Export extends Controller {
             return;
 	    }
 	    $exportdata = array();
-        $userlogin = getUserLogin();
-        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+
+            //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
         switch ($type) {
             case 'bibtex':
                 $this->publication_db->suppressMerge = True;
@@ -343,7 +343,6 @@ class Export extends Controller {
 	        appendErrorMessage('Export requested for non existing publication<br/>');
 	        redirect ('');
 	    }
-      	$userlogin = getUserLogin();
 
         #collect to-be-exported publications 
         $publicationMap = array($publication->pub_id => $publication);
@@ -410,8 +409,8 @@ class Export extends Controller {
             return;
 	    }
 	    $exportdata = array();
-        $userlogin = getUserLogin();
-        //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
+
+            //for export, bibtex should NOT merge crossrefs; ris SHOULD merge crossrefs
         switch ($type) {
             case 'bibtex':
                 $this->publication_db->suppressMerge = True;
@@ -576,7 +575,6 @@ class Export extends Controller {
             $this->output->set_output($output);
             return;
 	    }
-      $userlogin = getUserLogin();
 
         #collect to-be-exported publications 
         $publicationMap = array($publication->pub_id=>$publication);
