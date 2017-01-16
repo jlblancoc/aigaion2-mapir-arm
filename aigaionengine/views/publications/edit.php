@@ -158,7 +158,13 @@ include_once('aigaionengine/helpers/my_userfields.php');
                                                                $publication->$key, ' style="visibility: hidden;" ')."</span>\n";
           
           // 2nd) Split in fields like: "KEY=VALUE, KEY=VALUE", ...
-          preg_match_all("/([^,= ]+)=([^,= ]+)/", $publication->$key, $r); // See: http://stackoverflow.com/a/4924004/1631514
+          $userfields = $publication->$key;
+          // backwards compatibility: if userfields is an URI, assume it's an image link:
+          if (substr($userfields,0,4)=="http") {
+              $userfields = "img_url=".$userfields;
+          }
+          
+          preg_match_all("/([^,= ]+)=([^,= ]+)/",$userfields , $r); // See: http://stackoverflow.com/a/4924004/1631514
           $userfields_map = array_combine($r[1], $r[2]);
           
 
