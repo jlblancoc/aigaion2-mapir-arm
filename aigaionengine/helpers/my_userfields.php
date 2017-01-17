@@ -6,7 +6,8 @@ $USERFIELDS_DEFINITIONS = [
     [ 'name' => 'rank_indexname',  'desc' => 'Nombre del índice (Vacío, defecto=`JCR`)' ],
     [ 'name' => 'rank_pos_in_category',  'desc' => 'Posición de la revista en la categoría' ],
     [ 'name' => 'rank_num_in_category',  'desc' => 'Número de revistas en la categoría' ],
-    [ 'name' => 'rank_cat_name' , 'desc' => 'Nombre de la categoría' ]
+    [ 'name' => 'rank_cat_name' , 'desc' => 'Nombre de la categoría' ],
+    [ 'name' => 'impact_factor' , 'desc' => 'Impact factor de la revista' ]
  ];
 
 /** Given a publication object, returns a map key=>value for the keys in $USERFIELDS_DEFINITIONS */
