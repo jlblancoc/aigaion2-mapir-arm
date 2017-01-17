@@ -11,6 +11,9 @@ Generadores de listados:
 * [byauthor](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/f5bddb5b252b9c7f9f8d3a61b9b54049d800f291/aigaionengine/controllers/export.php#L234)
 * [bytopic](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/f5bddb5b252b9c7f9f8d3a61b9b54049d800f291/aigaionengine/controllers/export.php#L161)
 
+Userfields:
+* En [este fichero](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/aigaionengine/helpers/my_userfields.php) se pueden editar la lista de userfields que aparecen al editar una publicación.
+
 URL call: 
 * [formato de la URL](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/mapir_pub_export.php#L87)
 * [How to call it](https://github.com/jlblancoc/aigaion2-mapir-arm/blob/master/HowTo_Use_It.md)
