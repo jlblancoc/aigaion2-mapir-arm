@@ -24,14 +24,11 @@ function my_parse_pub_userfields(&$pub)
     return $userfields_map;
 }
 
-/** Given a publication object, echo its ranking as HTML, if it is an article, 
- * and the DB is populated via `userfields` fields. */
-function my_print_pub_ranking(&$pub)
+/** Returns a map with quartile & tercile as: 'Q'-> int , 'T'-> int , or an 
+ * empty array if not applicable or no DB data. 
+ */
+function pub_get_ranking(&$userfields_map)
 {
-    if ($pub->pub_type != "Article")
-        return;
-
-    $userfields_map = my_parse_pub_userfields($pub);
     if (isset($userfields_map['rank_pos_in_category']) && isset($userfields_map['rank_num_in_category']))
     {
         // We can compute journal ranking:
@@ -45,14 +42,42 @@ function my_print_pub_ranking(&$pub)
 
         $rank_cat = isset($userfields_map['rank_cat_name']) ? ' in '.$userfields_map['rank_cat_name'] : '';
         $ranking_name = isset($userfields_map['rank_indexname']) ? ' ('.$userfields_map['rank_indexname'].')' : ' (JCR)';
-
-        $mouse_over_text = 'Ranking '.$rank_pos.'/'.$rank_count.$rank_cat.$ranking_name;
-
-        echo ', <span style="border-bottom: 1px dotted #000;" title="'.$mouse_over_text.'">'.
-                '(Q'.intval($quartil).
-                ',&nbsp;T'.intval($tercil).
-                ')</span>';
+        
+        return array(
+            'Q' => intval($quartil),
+            'T' => intval($tercil),
+            'rank_pos'=>$rank_pos,
+            'rank_count'=>$rank_count,
+            'rank_cat' => $rank_cat,
+            'ranking_name' => $ranking_name
+        );
     }
+    else {
+        return array();
+    }    
+}
+
+/** Given a publication object, echo its ranking as HTML, if it is an article, 
+ * and the DB is populated via `userfields` fields. */
+function my_print_pub_ranking(&$pub)
+{
+    if ($pub->pub_type != "Article") {
+        return;
+    }
+
+    $userfields_map = my_parse_pub_userfields($pub);
+    $ranking_data = pub_get_ranking($userfields_map);
+    
+    if (empty($ranking_data)) {
+        return;
+    }
+
+    $mouse_over_text = 'Ranking '.$ranking_data['rank_pos'].'/'.$ranking_data['rank_count'].$ranking_data['rank_cat'].$ranking_data['ranking_name'];
+
+    echo ', <span style="border-bottom: 1px dotted #000;" title="'.$mouse_over_text.'">'.
+            '(Q'.$ranking_data['Q'].
+            ',&nbsp;T'.$ranking_data['T'].
+            ')</span>';
 }
 
 ?>

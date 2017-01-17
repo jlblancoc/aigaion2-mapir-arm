@@ -1,4 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); 
+include_once('aigaionengine/helpers/my_userfields.php');  // JLBC
+
 //required parameters:
 //$publications[] - array with publication objects
 //
@@ -25,7 +27,7 @@
   
   if (!isset($pubCount) || ($pubCount==0))
     $pubCount = sizeof($publications);
-    
+  
   //retrieve the publication summary and list stype preferences (author first or title first etc)
   $summarystyle = $userlogin->getPreference('summarystyle');  
   $liststyle    = $userlogin->getPreference('liststyle');
@@ -65,6 +67,70 @@
   
   //here the output starts
   echo "<div class='publication_list'>\n";
+  
+  // ----------------------------------
+  // JLBC: Generate user pub stats:
+  $article_stats_count = 0;
+  $article_stats_Q = [0,0,0,0];
+  $article_stats_T = [0,0,0];
+  foreach ($publications as $pub)
+  {
+    if ($pub->pub_type != "Article") {
+        continue;
+    }
+    
+    $article_stats_count++;
+      
+    $userfields = my_parse_pub_userfields($pub);
+    $ranking_data = pub_get_ranking($userfields);
+    if (empty($ranking_data)){
+        continue;
+    }
+    
+    $quartile = $ranking_data['Q'];
+    $tercile  = $ranking_data['T'];
+    
+    $article_stats_Q[$quartile-1]++;
+    $article_stats_T[$tercile-1]++;
+  }
+  
+  // ========== Q
+  echo "  <div class='header'>Publication ranking: Quartiles</div>\n";
+  $tb_styl = 'style="border: 1px solid black; padding: 5px;"';
+  echo "<span>Article count: ".$article_stats_count."</span>\n";
+  echo '<table '.$tb_styl.'>';
+  $tot_known = 0;
+  for ($i=0;$i<4;$i++) {
+    echo '<tr><td '.$tb_styl.'> Q'.($i+1).'</td>';
+    echo '<td '.$tb_styl.'>'.$article_stats_Q[$i].'</td>';
+    echo '</tr>';
+    $tot_known += $article_stats_Q[$i];
+  }
+    echo '<tr><td '.$tb_styl.'> Unknown</td>';
+    echo '<td '.$tb_styl.'>'.($article_stats_count-$tot_known).'</td>';
+    echo '</tr>';
+  echo '</table>';
+
+  // ========== T
+  echo "  <div class='header'>Publication ranking: Terciles</div>\n";
+  echo "<span>Article count: ".$article_stats_count."</span>\n";
+  echo '<table '.$tb_styl.'>';
+  $tot_known = 0;
+  for ($i=0;$i<3;$i++) {
+    echo '<tr><td '.$tb_styl.'> T'.($i+1).'</td>';
+    echo '<td '.$tb_styl.'>'.$article_stats_T[$i].'</td>';
+    echo '</tr>';
+    $tot_known += $article_stats_T[$i];
+  }
+    echo '<tr><td '.$tb_styl.'> Unknown</td>';
+    echo '<td '.$tb_styl.'>'.($article_stats_count-$tot_known).'</td>';
+    echo '</tr>';
+  echo '</table>';
+
+  // End of user pub stats
+  // ----------------------------------
+  
+  
   if (isset($header) && ($header != '')) {
     echo "  <div class='header'>".$header."</div>\n";
   }
