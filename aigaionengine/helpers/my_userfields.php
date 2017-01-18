@@ -20,6 +20,13 @@ function my_parse_pub_userfields(&$pub)
     }
 
     preg_match_all("/([^,= ]+)=([^,= ]+)/",$userfields , $r); // See: http://stackoverflow.com/a/4924004/1631514
+    
+    // URI decode
+    foreach ($r[2] as $i => $v) {
+        $v = urldecode($v);
+        $r[2][$i] = $v;
+    }
+    
     $userfields_map = array_combine($r[1], $r[2]);
     
     return $userfields_map;

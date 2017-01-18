@@ -65,7 +65,7 @@ function getAllUserFields()
             continue;
         
         var field_name = n.substring( myprefix.length );
-        var field_val  = document.getElementsByName(n)[0].value;
+        var field_val  =  encodeURIComponent(document.getElementsByName(n)[0].value.trim());
 
         if (ret.length!==0)
         {
