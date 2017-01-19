@@ -65,9 +65,6 @@ include_once('aigaionengine/helpers/my_userfields.php');  // JLBC
     }
   }
   
-  //here the output starts
-  echo "<div class='publication_list'>\n";
-  
   // ----------------------------------
   // JLBC: Generate user pub stats:
   $article_stats_count = 0;
@@ -94,42 +91,74 @@ include_once('aigaionengine/helpers/my_userfields.php');  // JLBC
     $article_stats_T[$tercile-1]++;
   }
   
-  // ========== Q
-  echo "  <div class='header'>Publication ranking: Quartiles</div>\n";
-  $tb_styl = 'style="border: 1px solid black; padding: 5px;"';
+function my_print_pub_share_link($desc, $url)
+{
+    echo '<li> '.$desc.' (<a href="'.$url.'" target="_blank">view</a>). Embed code:<br/>'.
+    '<div style="background-color:#dddddd;"><code>'.
+    $url.
+    '</code></div>'.
+    '</li>';
+}
+
+  
+  // ========== Q & T
+  echo '<div style="overflow: auto;">';
+  echo '<div style="display: inline-block;">';
+  
+  echo "  <div class='header'>Publication ranking (quartiles, terciles)</div>\n";
+  $tb_styl = 'style="float: left; padding: 5px; margin-right: 5px;"';
+  $td_styl = 'style="border: 1px solid black; padding: 5px;"';
   echo "<span>Article count: ".$article_stats_count."</span>\n";
   echo '<table '.$tb_styl.'>';
   $tot_known = 0;
   for ($i=0;$i<4;$i++) {
-    echo '<tr><td '.$tb_styl.'> Q'.($i+1).'</td>';
-    echo '<td '.$tb_styl.'>'.$article_stats_Q[$i].'</td>';
+    echo '<tr><td '.$td_styl.'> Q'.($i+1).'</td>';
+    echo '<td '.$td_styl.'>'.$article_stats_Q[$i].'</td>';
     echo '</tr>';
     $tot_known += $article_stats_Q[$i];
   }
-    echo '<tr><td '.$tb_styl.'> Unknown</td>';
-    echo '<td '.$tb_styl.'>'.($article_stats_count-$tot_known).'</td>';
+    echo '<tr><td '.$td_styl.'> Unknown</td>';
+    echo '<td '.$td_styl.'>'.($article_stats_count-$tot_known).'</td>';
     echo '</tr>';
   echo '</table>';
 
-  // ========== T
-  echo "  <div class='header'>Publication ranking: Terciles</div>\n";
-  echo "<span>Article count: ".$article_stats_count."</span>\n";
   echo '<table '.$tb_styl.'>';
   $tot_known = 0;
   for ($i=0;$i<3;$i++) {
-    echo '<tr><td '.$tb_styl.'> T'.($i+1).'</td>';
-    echo '<td '.$tb_styl.'>'.$article_stats_T[$i].'</td>';
+    echo '<tr><td '.$td_styl.'> T'.($i+1).'</td>';
+    echo '<td '.$td_styl.'>'.$article_stats_T[$i].'</td>';
     echo '</tr>';
     $tot_known += $article_stats_T[$i];
   }
-    echo '<tr><td '.$tb_styl.'> Unknown</td>';
-    echo '<td '.$tb_styl.'>'.($article_stats_count-$tot_known).'</td>';
+    echo '<tr><td '.$td_styl.'> Unknown</td>';
+    echo '<td '.$td_styl.'>'.($article_stats_count-$tot_known).'</td>';
     echo '</tr>';
   echo '</table>';
+
+
+  echo '</div>';
 
   // End of user pub stats
   // ----------------------------------
   
+  if (isset($author))
+  {
+    // Example links:
+    echo 
+      '<div style="float: left; margin-right: 15px;word-break: break-all; width: 60%;">'.
+      "  <div class='header'>Embed/share publication links</div>\n".
+      '<ul>';
+  
+    my_print_pub_share_link("List with images, sorted by type", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_image_list/type/none');
+    my_print_pub_share_link("List with images, sorted by year", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_image_list/year/none');
+    my_print_pub_share_link("Text list (no images), sorted by type", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_list/type/none');
+
+    echo "</ul></div>\n";
+  }
+  echo '</div>';
+  
+  //here the output starts
+  echo "<div class='publication_list'>\n";
   
   if (isset($header) && ($header != '')) {
     echo "  <div class='header'>".$header."</div>\n";

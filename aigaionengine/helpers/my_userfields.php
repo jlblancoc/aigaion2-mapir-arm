@@ -66,6 +66,7 @@ function pub_get_ranking(&$userfields_map)
 }
 
 /** Given a publication object, echo its ranking as HTML, if it is an article, 
+/** Given a publication object, echo its ranking as HTML, if it is an article, 
  * and the DB is populated via `userfields` fields. */
 function my_print_pub_ranking(&$pub)
 {
