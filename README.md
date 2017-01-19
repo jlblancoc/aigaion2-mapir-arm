@@ -30,9 +30,7 @@ URL call:
 
 * Parte 3: Estadísticas sobre cuartiles y terciles
 
-(Write me!)
-
-
+[![Aigaion2 videotutorial](http://img.youtube.com/vi/-SWc0dF6_is/0.jpg)](http://www.youtube.com/watch?v=-SWc0dF6_is "Tutorial: Aigaion II (gestor listados de publicaciones online) - (Parte 3) ")
 
 ## Importar listado desde Python
 
