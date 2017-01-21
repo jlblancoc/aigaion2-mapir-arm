@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?><?php
   $publicationfields = getPublicationFieldArray($publication->pub_type);
   if (!isset($categorize)) $categorize= False;
-
+  
 //some things are dependent on user rights.
 //$accessLevelEdit is set to true iff the edit access level of the publication does not make it
 //inaccessible to the logged user. Note: this does NOT yet garantuee atachemtn_edit or note_ediot or publication_edit rights
@@ -220,7 +220,7 @@ $this->load->helper('translation');
             }
         }
         else {
-            echo $publication->$key;
+            echo '<span style="word-break: break-all;">'.$publication->$key.'</span>';
         }
       ?></td>
     </tr>
