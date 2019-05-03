@@ -172,7 +172,7 @@ class Attachment_db {
     			appendErrorMessage(__("Error adding attachment").": ".mysql_error()."<br/>");
     			return -1;
     		} */
-            $new_id = mysql_insert_id();
+            $new_id = $CI->db->insert_id();
             $attachment->att_id = $new_id;
             $CI->accesslevels_lib->initAttachmentAccessLevels($attachment);
         	return $attachment->att_id;
@@ -270,7 +270,7 @@ class Attachment_db {
                     ."<br/>");
         		}
 
-                $new_id = mysql_insert_id();
+                $new_id = $CI->db->insert_id();
                 $attachment->att_id = $new_id;
                 $CI->accesslevels_lib->initAttachmentAccessLevels($attachment);
             	return $attachment->att_id;
@@ -317,8 +317,8 @@ class Attachment_db {
 		if ($attachment->ismain) {
             $CI->db->where('pub_id', $attachment->pub_id);
             $CI->db->update('attachments', array('ismain'=>'FALSE'));
-			/*if (mysql_error()) {
-				appendErrorMessage(__("Error un-'main'-ing other attachments").": ".mysql_error());
+			/*if ($CI->db->_error_number()) {
+				appendErrorMessage(__("Error un-'main'-ing other attachments").": ".$CI->db->_error_message());
 				return -1;
 			}*/
 		}
