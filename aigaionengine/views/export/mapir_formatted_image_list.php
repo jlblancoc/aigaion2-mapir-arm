@@ -2,7 +2,7 @@
 <?php
 include_once('aigaionengine/helpers/my_userfields.php');
 
-/**
+/*
 ---------------- JLBC JAN/2017 ------------------
 -- Use new userfields data to generate stats for journal rankings
 
@@ -27,7 +27,6 @@ header: not used here.
 style: APA | IEEETRANS, etc (available OSBib styles)
 withlinks: 1 for showing links to aigaion in each publication, 0 for not showing them.
 cssfile: CSS file name (with extension, without path), that must be in http://babel.isa.uma.es/_utils/aigaion/export_css
-
 */
 
 // Definitions
@@ -75,7 +74,7 @@ if (strlen($cssfile)>0)
 		{
           clearstatcache();
           if ($fsize = @filesize($nf)) $txt = fread($fh, $fsize);
-		  else 
+		  else
 		  {
               $txt = '';
               while (!feof($fh)) $txt .= fread($fh, 8192);
@@ -118,8 +117,8 @@ function myPrintWithPrefix($p, $str)
 		echo "$p $str, ";
 }
 
-function isupper($i) 
-{ 
+function isupper($i)
+{
 	$i2 = strtoupper($i);
 	return (ord($i2)>=ord('A') && ord($i2)<=ord('Z') && $i2 === $i);
 }
@@ -134,26 +133,26 @@ function myPrintFormattedFullName($nam)
 	$lastNames=substr($nam,0,$comPos);
 	$initials='';
 	$arr = preg_split('//', $firstNames, -1, PREG_SPLIT_NO_EMPTY);
-	foreach($arr as $c) 
+	foreach($arr as $c)
 	{
 		if (isupper($c)) $initials.=$c.'.';
-	}		
+	}
 	echo $initials.' '.$lastNames;
 }
 
 function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtype)
-{		
+{
 	//Some definitions
 	$beginline = '<li class="aigaion_publine">'."\n";
 	$beginline_no_bullet = '<li class="aigaion_nobulletline">'."\n";
-	$endline = "</li>\n";	
+	$endline = "</li>\n";
 	$begindivyear = '<div class="aigaion_divyear">';
 	$enddivyear = "</div>\n";
 	$beginpubli = '<div class="aigaion_publication">'."\n"; //  &#9642;  ";  // Black square (it's easier than CSS's ul/li with the mess of years, etc.)
 	$endpubli = "</div>\n";
 
-	global $yearold;	
-	
+	global $yearold;
+
 	// Header for each new year --------------
 	if (intval($nonxrefs[$pub_id]->year)!=intval($yearold))
 	{
@@ -161,14 +160,14 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 		$yearold=$nonxrefs[$pub_id]->year;
 	}
 
-	// Public. data -------------------------		
+	// Public. data -------------------------
 	$hasLinks= (intval($withlinks)==1);
 	$hasPDF=((isset($nonxrefs[$pub_id]->firstattachment))&&(strlen($nonxrefs[$pub_id]->firstattachment)>0));
 	$hasURL=((isset($nonxrefs[$pub_id]->url))&&(strlen($nonxrefs[$pub_id]->url)>0));
     $hasNOTE=((isset($nonxrefs[$pub_id]->note))&&(strlen($nonxrefs[$pub_id]->note)>0));
-	
+
 	echo $beginline.$beginpubli;
-	
+
 	// 0) IMAGE
 	echo "<div class='aigaion_publication_image'>"."\n";
 
@@ -178,8 +177,8 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
         } else {
             //Default image
             $imgPath = 'http://mapir.isa.uma.es/jgmonroy/images/papers/logo_pub_list.png';
-        } 
-	
+        }
+
 	if ($hasURL)
 	{
 		echo ' <a href="'.($nonxrefs[$pub_id]->url).'" target="_blank">';
@@ -188,11 +187,11 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	}
 	else
 		echo "	<img src='".$imgPath."'  />"."\n";
-		
+
 	echo "</div>"."\n";
-	
-	
-	echo "<div class='aigaion_publication_info'>"."\n";		
+
+
+	echo "<div class='aigaion_publication_info'>"."\n";
 	// 1) AUTHOR NAMES
 	echo "<p class='authors'>";
 	foreach ($nonxrefs[$pub_id]->authors as $author)
@@ -201,7 +200,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 		echo ", ";
 	}
 	echo "</p>";
-	
+
 
 	// 2) TITLE
 	echo "<p class='title'>";
@@ -218,12 +217,12 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 
 	// 3) JOURNAL-CONFERENCE:
 	echo "<p class='journal'>";
-	
-	//cga Add additional info for theses	
+
+	//cga Add additional info for theses
 	if ( (stripos($pubtype,'Theses')!==FALSE) || (stripos($pubtype,'thesis')!==FALSE) )
 		echo strval($nonxrefs[$pub_id]->school). ', ';
-	
-	//cga Add additional info for Patents	
+
+	//cga Add additional info for Patents
 	if ( (stripos($pubtype,'Misc')!==FALSE) || (stripos($pubtype,'Patents')!==FALSE) )
 		echo strval($nonxrefs[$pub_id]->howpublished). ', ';
 
@@ -233,7 +232,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	//Standard data
 	myPrintWithComma($nonxrefs[$pub_id]->journal);
 	myPrintWithComma($nonxrefs[$pub_id]->booktitle);
-	
+
 	// 4) Rest of info, if available:
 	myPrintWithComma($nonxrefs[$pub_id]->edition);
 	myPrintWithComma($nonxrefs[$pub_id]->series);
@@ -256,33 +255,33 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 
 	// Year:
 	echo strval($nonxrefs[$pub_id]->year);
-        
+
         // Ranking:
         my_print_pub_ranking($nonxrefs[$pub_id]);
-        
+
         // end of pub entry:
         echo '. ';
 	echo '</p>';
-			
-	// 5) Downloads 	
+
+	// 5) Downloads
 	if ($hasLinks || $hasPDF || $hasURL)
 		echo '   ';
 	//PDF
-	if ($hasPDF)	
+	if ($hasPDF)
 		echo ' <a class="aigaion_enlace" href="'.($nonxrefs[$pub_id]->firstattachment).'" target="_blank" > <img src="'.$pathaigaion.'/export_css/pdf_icon.gif" border="0" alt="pdf"></a>';
-	
+
 	//URL
 	if ($hasURL)
 	{
 		if ($hasPDF) echo '   ';
 		echo ' <a class="aigaion_enlace" href="'.($nonxrefs[$pub_id]->url).'" target="_blank"><img src="'.$pathaigaion.'/export_css/url_icon.png" border="0" alt="www"></a>';
 	}
-	//BibTex	
+	//BibTex
 	if ($hasLinks)
 	{
 		if ($hasPDF || $hasURL) echo '   ';
 		echo '<a class="aigaion_enlace" href="'.$pathaigaion.'/index.php/export/publication/'.($nonxrefs[$pub_id]->pub_id).'/bibtex" target="_blank"><img src="'.$pathaigaion.'/export_css/bibtex_icon.gif" border="0" alt="bibtex"></a>';
-	}		
+	}
 	// DOI?
 	if (isset($nonxrefs[$pub_id]->doi) && 0!=strlen($nonxrefs[$pub_id]->doi))
 	{
@@ -292,35 +291,35 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	}
 	// 6) End:
 	echo $endpubli.$endline;
-		
+
 }
 
 /*=======================================================================================================*/
-	
+
 // For each publication type, make a list of the pub_id's included in that category:
 $myPubsIndex = array();
-foreach($typenames as $pubtypforcmp=>$pubtype) 
+foreach($typenames as $pubtypforcmp=>$pubtype)
 	$myPubsIndex[$pubtype]=array();
 
-foreach($typenames as $pubtypforcmp=>$pubtype) 
+foreach($typenames as $pubtypforcmp=>$pubtype)
 {
 	foreach ($nonxrefs as $pub_id=>$publication)
-	{	
+	{
 		if (!strcmp($nonxrefs[$pub_id]->pub_type,$pubtypforcmp))
 		{
-			if ( intval($nonxrefs[$pub_id]->year) >= intval($maxyeartopublish) )			
+			if ( intval($nonxrefs[$pub_id]->year) >= intval($maxyeartopublish) )
 				$myPubsIndex[$pubtype][$pub_id]=$pub_id;  // Is there something like std::vector<> in PHP, or only std::map<>???
 		}
 	}
 }
 
-//Generate publication list By.....	
+//Generate publication list By.....
 if (strcmp($sort,"year") == 0)
 {
 	$yearold=0;
 	foreach($nonxrefs as $pub_id=>$publication)
 	{
-		if ( intval($nonxrefs[$pub_id]->year) >= intval($maxyeartopublish) )		
+		if ( intval($nonxrefs[$pub_id]->year) >= intval($maxyeartopublish) )
 		{
 			$pubtype = $nonxrefs[$pub_id]->pub_type;
 			myPrintNewElement($nonxrefs,$pub_id,$pathaigaion,$withlinks,$pubtype);
@@ -336,13 +335,14 @@ else
 	foreach($typenames as $pubtypforcmp=>$pubtype)
 	{
 		$pubscount = count($myPubsIndex[$pubtype]);
-		if ($pubscount==0) 
+		if ($pubscount==0)
 			continue;	// Skip: we don't have pubs of this type.
 
 		// Header of this pub. type:
 		echo $beginline_no_bullet.$begindivtype."<h2>";
 		echo "$pubtype (".strval($pubscount).")"."</h2>".$enddivtype.$endline;
 
+		global $yearold;
 		$yearold=0;
 		foreach($myPubsIndex[$pubtype] as $pub_id)
 		{
