@@ -1,13 +1,13 @@
 <?php
 /********************************
 OSBib:
-A collection of PHP classes to create and manage bibliographic formatting for OS bibliography software 
+A collection of PHP classes to create and manage bibliographic formatting for OS bibliography software
 using the OSBib standard.
 
 Released through http://bibliophile.sourceforge.net under the GPL licence.
 Do whatever you like with this -- some credit to the author(s) would be appreciated.
 
-If you make improvements, please consider contacting the administrators at bibliophile.sourceforge.net 
+If you make improvements, please consider contacting the administrators at bibliophile.sourceforge.net
 so that your improvements can be added to the release package.
 
 Adapted from WIKINDX: http://wikindx.sourceforge.net
@@ -48,8 +48,8 @@ class INIT
 			$vars = $_GET;
 		else
 			return FALSE;
-		if(!get_magic_quotes_gpc())
-			$vars = array_map(array("INIT", "magicSlashes"), $vars);
+
+		$vars = array_map(array("INIT", "magicSlashes"), $vars);
 		return $vars;
 	}
 // start the SESSION
