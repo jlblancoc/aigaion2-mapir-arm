@@ -167,7 +167,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	if (intval($nonxrefs[$pub_id]->year)!=intval($yearold))
 	{
 		// Use the existing no-bullet class for the year header (control line)
-		echo $beginline_no_bullet_ctrl.$begindivyear.$nonxrefs[$pub_id]->year.$enddivyear.$endline;
+		echo $beginline_no_bullet_ctrl.$begindivyear.$nonxrefs[$pub_id]->year.$enddivyear.$endline;		
 		$yearold=$nonxrefs[$pub_id]->year;
 	}
 
@@ -177,7 +177,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 	$hasURL=((isset($nonxrefs[$pub_id]->url))&&(strlen($nonxrefs[$pub_id]->url)>0));
     $hasNOTE=((isset($nonxrefs[$pub_id]->note))&&(strlen($nonxrefs[$pub_id]->note)>0));
 
-	echo $beginline.$beginpubli;
+	echo $publine_start_tag.$beginpubli;
 
 	// 0) IMAGE
 	echo "<div class='aigaion_publication_image'>"."\n";
