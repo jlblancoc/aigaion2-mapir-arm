@@ -41,7 +41,16 @@ if (!isset($hide_bullets)) {
     $hide_bullets = FALSE;
 }
 
-$typenames = get_pub_types();
+$typenames = array(	'Article' => 'Journals',
+					'Book' => 'Books',
+					'Inbook' => 'Book Chapters',
+					'Inproceedings' => 'Conferences',
+					'Misc' => 'Patents',
+					'Phdthesis' => 'PhD Theses',
+					'Manual' => 'Manuals',
+					'Mastersthesis' => 'Master Theses',
+					'Techreport' => 'Technical Reports' );
+
 $maxyeartopublish = 0; // Show all years unless limited by URL parameter
 if (isset($maxyearsfromnow) && strcmp($maxyearsfromnow,'none') != 0) {
     $maxyeartopublish = date('Y') - intval($maxyearsfromnow);
