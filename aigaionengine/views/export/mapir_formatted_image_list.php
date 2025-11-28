@@ -144,7 +144,7 @@ function myPrintFormattedFullName($nam)
 	echo $initials.' '.$lastNames;
 }
 
-function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtype)
+function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtype, $hide_bullets)
 {
 //Some definitions
 	// NEW: Define a specific class for hidden bullets
