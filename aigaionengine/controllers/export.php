@@ -203,7 +203,8 @@ class Export extends Controller {
             $exportdata['cssfile'] = $cssfile;
             $exportdata['sort'] = $orderby;
             $exportdata['maxyearsfromnow'] = $maxyearsfromnow;
-		
+            $exportdata['hide_bullets'] = ($type == 'mapir_formatted_image_list');
+
             #collect to-be-exported publications 
             $publicationMap = $this->publication_db->getForTopicAsOrderedMap($topic->topic_id,$exportdata['sort'],$filtertype);
             #split into publications and crossreffed publications, adding crossreffed publications as needed
@@ -278,6 +279,7 @@ class Export extends Controller {
         $exportdata['cssfile'] = $cssfile;
         $exportdata['sort'] = $orderby;
         $exportdata['maxyearsfromnow'] = $maxyearsfromnow;
+        $exportdata['hide_bullets'] = ($type == 'mapir_formatted_image_list');
 
         #collect to-be-exported publications 
         $publicationMap = $this->publication_db->getForAuthorAsOrderedMap($author->author_id,$exportdata['sort'],$filtertype);
@@ -361,8 +363,9 @@ class Export extends Controller {
         #send to right export view
         $exportdata['nonxrefs'] = $pubs;
         $exportdata['xrefs']    = $xrefpubs;
-		$exportdata['withlinks'] = $withlinks;
-		$exportdata['cssfile'] = $cssfile;
+        $exportdata['withlinks'] = $withlinks;
+        $exportdata['cssfile'] = $cssfile;
+        $exportdata['hide_bullets'] = ($type == 'mapir_formatted_image_list');
 
         $output = $this->load->view('export/'.$type, $exportdata, True);
 
@@ -370,6 +373,87 @@ class Export extends Controller {
         $this->output->set_output($output);        
 
     }    
+
+/** -------------------------   NEW: JAFMA/JL/CGA 2025   ----------------------
+    export/byauthor_tabbed  -> exportacion completa por autor, ordenada por año y por tipo, mostrada en tabs HTML5
+    
+    Export all (accessible) entries from one author in a tabbed view
+    
+	Fails with error message when one of:
+	    non existing author_id requested
+	    
+	Parameters passed via URL segments:
+	    3rd: author_id
+		4th: 1 for showing links to individual publications, 0 for not.
+		5th: css file (used for the tabbed view, e.g., 'fancy_tabs.css')
+		6th: type of the publications (a filter)
+	    7th: format type for the inner lists (e.g., 'mapir_formatted_list')
+		8th: max year to list publications from now (recent publications)
+    Returns:
+        A clean text page with exported publications in a tabbed view
+    */
+    function byauthor_tabbed() {
+	    $author_id = $this->uri->segment(3,-1);
+	    $withlinks = $this->uri->segment(4,'0');
+	    $cssfile = $this->uri->segment(5,'');
+		$filtertype = $this->uri->segment(6,'');
+		$list_type = $this->uri->segment(7,'mapir_formatted_list'); // e.g., mapir_formatted_list
+		$maxyearsfromnow = $this->uri->segment(8,'none');
+	    
+		if ($filtertype == 'none'){ $filtertype = ''; }
+			
+	    $author = $this->author_db->getByID($author_id);
+	    if ($author==null) {
+	        appendErrorMessage('Export requested for non existing author<br/>');
+	        redirect ('');
+	    }
+	    
+	    $exportdata = array();
+        $this->publication_db->enforceMerge = True;
+        $exportdata['format'] = 'html';        
+        $exportdata['style'] = 'IEEETRANS';
+        $exportdata['withlinks'] = $withlinks;
+        $exportdata['cssfile'] = $cssfile;
+        $exportdata['list_type'] = $list_type;
+        $exportdata['maxyearsfromnow'] = $maxyearsfromnow;
+        // Flag to indicate list items should not have standard bullets (e.g., for image lists)
+        $exportdata['hide_bullets'] = ($list_type == 'mapir_formatted_image_list');
+
+        # --- Data for 'By Type' Tab (default sort order is 'type') ---
+        $publicationMap_type = $this->publication_db->getForAuthorAsOrderedMap($author->author_id,'type',$filtertype);
+        $splitpubs_type = $this->publication_db->resolveXref($publicationMap_type,false);
+        $pubs_type = $splitpubs_type[0];
+        
+        # --- Data for 'By Year' Tab ---
+        $publicationMap_year = $this->publication_db->getForAuthorAsOrderedMap($author->author_id,'year',$filtertype);
+        $splitpubs_year = $this->publication_db->resolveXref($publicationMap_year,false);
+        $pubs_year = $splitpubs_year[0];
+
+        // Helper function to add first attachment to publications (as seen in byauthor)
+        $add_attachments = function(&$pubs) {
+            foreach ($pubs as $pub_id => &$publication) {
+                $atts = $this->attachment_db->getAttachmentsForPublication($pub_id);
+                $publication->firstattachment = (count($atts) > 0) ? $atts[0]->location : '';
+            }
+        };
+
+        $add_attachments($pubs_type);
+        $add_attachments($pubs_year);
+        
+        #send to right export view
+        $exportdata['author_name'] = $author->getName();
+        $exportdata['header']   = 'Publications for author '.$exportdata['author_name'];
+        
+        // Pass both sets of publications to the new tabbed view
+        $exportdata['pubs_by_type'] = $pubs_type;
+        $exportdata['pubs_by_year'] = $pubs_year;
+        
+        // The view name for the new tabbed style
+        $output = $this->load->view('export/author_tabbed_view', $exportdata, True);
+
+        //set output
+        $this->output->set_output($output);        
+    }
 
 
     /** 

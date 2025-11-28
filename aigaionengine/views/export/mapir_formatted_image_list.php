@@ -43,6 +43,10 @@ if (!isset($sort)) {
 if (!isset($maxyearsfromnow) || ($maxyearsfromnow == 'none')) {
     $maxyearsfromnow = 100;
 }
+// Initialize $hide_bullets
+if (!isset($hide_bullets)) {
+    $hide_bullets = FALSE;
+}
 $thisYear = date("Y");
 $maxyeartopublish = (intval($thisYear) - intval($maxyearsfromnow));
 $typenames = array(	'Article' => 'Journals',
@@ -142,21 +146,28 @@ function myPrintFormattedFullName($nam)
 
 function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtype)
 {
-	//Some definitions
-	$beginline = '<li class="aigaion_publine">'."\n";
-	$beginline_no_bullet = '<li class="aigaion_nobulletline">'."\n";
+//Some definitions
+	// NEW: Define a specific class for hidden bullets
+	$beginline_bullet = '<li class="aigaion_publine">'."\n";
+	$beginline_no_bullet_pub = '<li class="aigaion_nobulletpubline">'."\n"; // New class for no bullets on publication entry
+	$beginline_no_bullet_ctrl = '<li class="aigaion_nobulletline">'."\n"; // Used for control lines (Year/Type headers)
 	$endline = "</li>\n";
 	$begindivyear = '<div class="aigaion_divyear">';
 	$enddivyear = "</div>\n";
 	$beginpubli = '<div class="aigaion_publication">'."\n"; //  &#9642;  ";  // Black square (it's easier than CSS's ul/li with the mess of years, etc.)
 	$endpubli = "</div>\n";
+    
+    // Choose the correct start tag for a publication entry
+    $publine_start_tag = ($hide_bullets) ? $beginline_no_bullet_pub : $beginline_bullet;
+
 
 	global $yearold;
 
 	// Header for each new year --------------
 	if (intval($nonxrefs[$pub_id]->year)!=intval($yearold))
 	{
-		echo $beginline_no_bullet.$begindivyear.$nonxrefs[$pub_id]->year.$enddivyear.$endline;
+		// Use the existing no-bullet class for the year header (control line)
+		echo $beginline_no_bullet_ctrl.$begindivyear.$nonxrefs[$pub_id]->year.$enddivyear.$endline;
 		$yearold=$nonxrefs[$pub_id]->year;
 	}
 
@@ -290,8 +301,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
 		echo ' <a class="aigaion_enlace" href="http://dx.doi.org/'.strval($d).'" target="_blank"> <img src="'.$pathaigaion.'/export_css/doi_icon.gif" border="0" alt="doi"></a>';
 	}
 	// 6) End:
-	echo $endpubli.$endline;
-
+	echo $publine_start_tag.$beginpubli;
 }
 
 /*=======================================================================================================*/
@@ -322,7 +332,7 @@ if (strcmp($sort,"year") == 0)
 		if ( intval($nonxrefs[$pub_id]->year) >= intval($maxyeartopublish) )
 		{
 			$pubtype = $nonxrefs[$pub_id]->pub_type;
-			myPrintNewElement($nonxrefs,$pub_id,$pathaigaion,$withlinks,$pubtype);
+			myPrintNewElement($nonxrefs,$pub_id,$pathaigaion,$withlinks,$pubtype, $hide_bullets);
 		}
 	}
 }
@@ -346,7 +356,7 @@ else
 		$yearold=0;
 		foreach($myPubsIndex[$pubtype] as $pub_id)
 		{
-			myPrintNewElement($nonxrefs,$pub_id,$pathaigaion,$withlinks,$pubtype);
+			myPrintNewElement($nonxrefs,$pub_id,$pathaigaion,$withlinks,$pubtype, $hide_bullets);
 		}
 		flush();
 	}
