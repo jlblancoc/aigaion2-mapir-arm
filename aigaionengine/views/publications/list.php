@@ -149,6 +149,7 @@ function my_print_pub_share_link($desc, $url)
       "  <div class='header'>Embed/share publication links</div>\n".
       '<ul>';
   
+    my_print_pub_share_link("List with images, tabbed by type", AIGAION_ROOT_URL.'index.php/export/byauthor_tabbed/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_image_list/50');
     my_print_pub_share_link("List with images, sorted by type", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_image_list/type/none');
     my_print_pub_share_link("List with images, sorted by year", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_image_list/year/none');
     my_print_pub_share_link("Text list (no images), sorted by type", AIGAION_ROOT_URL.'index.php/export/byauthor/'.$author->author_id.'/1/aigaion_pubs_for_joomlawrapper_images.css/none/mapir_formatted_list/type/none');
