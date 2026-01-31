@@ -135,7 +135,7 @@ if (!function_exists('embed_myPrintNewElement')) {
         if (isset($userfields_map['img_url']) && $userfields_map['img_url'] != '') {
             $imgPath = $userfields_map['img_url'];
         } else {
-            $imgPath = 'http://mapir.isa.uma.es/jgmonroy/images/papers/logo_pub_list.png';
+            $imgPath = 'https://ingmec.ual.es/~ingmec/default_pub_icon.png';
         }
 
         if ($hasURL) {

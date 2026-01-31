@@ -187,7 +187,7 @@ function myPrintNewElement(&$nonxrefs,$pub_id,&$pathaigaion,&$withlinks,&$pubtyp
             $imgPath = $userfields_map['img_url'];
         } else {
             //Default image
-            $imgPath = 'http://mapir.isa.uma.es/jgmonroy/images/papers/logo_pub_list.png';
+            $imgPath = 'https://ingmec.ual.es/~ingmec/default_pub_icon.png';
         }
 
 	if ($hasURL)
