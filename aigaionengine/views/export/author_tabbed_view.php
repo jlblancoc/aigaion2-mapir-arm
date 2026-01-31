@@ -129,7 +129,7 @@ $pathaigaion = AIGAION_ROOT_URL;
             padding: 0;
         }
         
-        /* Type headers */
+        /* Type headers - collapsible */
         .aigaion-tab-content .aigaion_divtype {
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
@@ -148,6 +148,39 @@ $pathaigaion = AIGAION_ROOT_URL;
             border-radius: 6px;
             margin: 0;
             border-left: 4px solid #3b82f6;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s ease;
+        }
+        
+        .aigaion-tab-content .aigaion_divtype h2:hover {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .aigaion-tab-content .aigaion_divtype h2::after {
+            content: '▼';
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .aigaion-tab-content .aigaion_divtype h2.collapsed::after {
+            transform: rotate(-90deg);
+        }
+        
+        /* Collapsible section content */
+        .aigaion-type-section {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+            max-height: 5000px; /* Large enough to fit content */
+            opacity: 1;
+        }
+        
+        .aigaion-type-section.collapsed {
+            max-height: 0;
+            opacity: 0;
         }
         
         /* Year headers */
@@ -280,10 +313,6 @@ $pathaigaion = AIGAION_ROOT_URL;
 
 <div class="aigaion-tabbed-container">
     
-    <!-- <h1 class="aigaion-tabbed-header">
-        <?php echo htmlspecialchars($header); ?>
-    </h1> -->
-
     <!-- Tab Navigation Buttons -->
     <nav class="aigaion-tab-nav">
         <button 
@@ -342,6 +371,7 @@ $pathaigaion = AIGAION_ROOT_URL;
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
     const tabs = document.querySelectorAll('.aigaion-tab-btn');
     const contents = document.querySelectorAll('.aigaion-tab-content');
 
@@ -363,6 +393,50 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Collapsible sections for "By Type" tab
+    // Wrap publications following each type header in a collapsible div
+    const typeTab = document.getElementById('tab-content-type');
+    if (typeTab) {
+        const pubList = typeTab.querySelector('.aigaion_publist');
+        if (pubList) {
+            const items = Array.from(pubList.children);
+            let currentSection = null;
+            let currentWrapper = null;
+
+            items.forEach(item => {
+                const typeHeader = item.querySelector('.aigaion_divtype h2');
+                
+                if (typeHeader) {
+                    // This is a type header - create new section wrapper
+                    if (currentWrapper) {
+                        pubList.insertBefore(currentWrapper, item);
+                    }
+                    
+                    currentSection = item;
+                    currentWrapper = document.createElement('div');
+                    currentWrapper.className = 'aigaion-type-section';
+                    
+                    // Add click handler to toggle collapse
+                    typeHeader.addEventListener('click', function() {
+                        this.classList.toggle('collapsed');
+                        const section = this.closest('.aigaion_nobulletline').nextElementSibling;
+                        if (section && section.classList.contains('aigaion-type-section')) {
+                            section.classList.toggle('collapsed');
+                        }
+                    });
+                } else if (currentWrapper) {
+                    // This is a publication item - add to current section
+                    currentWrapper.appendChild(item);
+                }
+            });
+            
+            // Don't forget the last section
+            if (currentWrapper && currentWrapper.children.length > 0) {
+                pubList.appendChild(currentWrapper);
+            }
+        }
+    }
 });
 </script>
 
