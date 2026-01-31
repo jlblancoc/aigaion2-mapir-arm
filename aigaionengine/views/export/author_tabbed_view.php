@@ -280,9 +280,9 @@ $pathaigaion = AIGAION_ROOT_URL;
 
 <div class="aigaion-tabbed-container">
     
-    <h1 class="aigaion-tabbed-header">
+    <!-- <h1 class="aigaion-tabbed-header">
         <?php echo htmlspecialchars($header); ?>
-    </h1>
+    </h1> -->
 
     <!-- Tab Navigation Buttons -->
     <nav class="aigaion-tab-nav">
