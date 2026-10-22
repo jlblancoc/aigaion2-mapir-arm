@@ -288,7 +288,7 @@ class Parseentries
 		$oldString = trim($valuelessoldstring);
 		//if ($oldString[0]==',')$oldString = substr($oldString,1);
 		$rev = strrev(trim($oldString));
-		if($rev{0} != ',')
+		if($rev[0] != ',')
 			$oldString .= ',';
 		$keys = preg_split("/=,/", $oldString);
 		// 22/08/2004 - Mark Grimshaw
@@ -300,7 +300,7 @@ class Parseentries
 		  $value = trim(array_shift($values));
 			$rev = strrev($value);
 			// remove any dangling ',' left on final field of entry
-			if($rev{0} == ',')
+			if($rev[0] == ',')
 				$value = rtrim($value, ",");
 			if(!$value)
 				continue;
@@ -362,12 +362,12 @@ class Parseentries
 // Remove delimiters from a string
 	function removeDelimiters($string)
 	{
-		if($string  && ($string{0} == "\""))
+		if($string  && ($string[0] == "\""))
 		{
 		$string = substr($string, 1);
 		$string = substr($string, 0, -1);
 		}
-		else if($string && ($string{0} == "{"))
+		else if($string && ($string[0] == "{"))
 		{
 			if(strlen($string) > 0 && $string[strlen($string)-1] == "}")
 			{
@@ -453,7 +453,7 @@ class Parseentries
 				} else {
 				  //normal text (has delimiters) or undefined macro (needs special handling)
 				 //unknown macro: special case
-				 	if($str  && ($str{0} != "\"") && ($str{0} != "{"))
+				 	if($str  && ($str[0] != "\"") && ($str[0] != "{"))
 				 	{ 
 				     $string .= AIGSTR.trim(strtolower($str)).strrev(AIGSTR); //temporarily enclose unknown macro, may be restored when actual entry is constructed
 				 	//appendMessage("macro ".AIGSTR.trim(strtolower($str)).strrev(AIGSTR)."<br>".$string."<br>");

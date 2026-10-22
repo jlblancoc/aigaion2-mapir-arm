@@ -1453,7 +1453,7 @@ class BIBFORMAT
 		}
 		$pString = isset($newString) ? $newString : $pString;
 		if(strlen($oldString)>0) // perhaps requires first character maintained as is
-			if($oldString{0} == $oldDelimitLeft) 
+			if($oldString[0] == $oldDelimitLeft) 
 				return ltrim($pString);
 		return $this->utf8->utf8_ucfirst(ltrim($pString));
 	}

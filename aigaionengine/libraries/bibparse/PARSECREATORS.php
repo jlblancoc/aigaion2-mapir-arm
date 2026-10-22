@@ -288,7 +288,7 @@ class Parsecreators
 		foreach ($name as $part)
 		{
 			$size = strlen($part);
-			if (($part{($size-1)} == ".") && ($size < 4))
+			if (($part[($size-1)] == ".") && ($size < 4))
 				$initials .= $part;
 			elseif (preg_match("/([A-Z])/", $part, $firstChar))
 				$initials .= $firstChar[0].". ";
@@ -357,7 +357,7 @@ class Parsecreators
 				if ($count < $size)
 				{
 				  //if the end of part contains an escape character (either just \ or \{, we do not add the extra space
-				  if (($part{strlen($part)-1} == "\\") || ($part{strlen($part)-1} == "{"))
+				  if (($part[strlen($part)-1] == "\\") || ($part[strlen($part)-1] == "{"))
 				    $formatName.=".";
 				  else
 					  $formatName.=". ";

@@ -11,7 +11,8 @@ class Passwordchecker_pam {
         }
 
         //now try to login from PAM
-        if (pam_auth($uname,$password, &$error)) {
+        $error = '';
+        if (pam_auth($uname,$password, $error)) {
             return array('uname'=>$uname);
         } else {
             appendErrorMessage($error);
