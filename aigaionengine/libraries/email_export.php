@@ -30,7 +30,7 @@ class Email_Export {
 
 		$CI->load->library('email');
 
-		$CI->email->from($userMail, ereg_replace("[^A-Za-z0-9]", "?", $userFirst).' '.ereg_replace("[^A-Za-z0-9]", "?", $userSur));
+		$CI->email->from($userMail, preg_replace('/[^A-Za-z0-9]/', '?', $userFirst).' '.preg_replace('/[^A-Za-z0-9]/', '?', $userSur));
 		$CI->email->to($email_address);
 		$CI->email->subject($subject);
 		$CI->email->message($messageBody);

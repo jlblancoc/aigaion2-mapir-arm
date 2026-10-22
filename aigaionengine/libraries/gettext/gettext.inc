@@ -65,6 +65,7 @@ function _get_reader($domain=null, $category=5, $enable_cache=true) {
       //appendErrorMessage("Cannot find l10n file ".$domain." for language ".$locale."<br>");
       $input = null;
     }
+    if (!isset($text_domains[$domain])) { $text_domains[$domain] = new stdClass(); }
     $text_domains[$domain]->l10n = new gettext_reader($input, $enable_cache);
   }
   return $text_domains[$domain]->l10n;
@@ -184,6 +185,7 @@ function _bindtextdomain($domain, $path) {
   // ensure $path ends with a slash
   if ($path[strlen($path) - 1] != '/') $path .= '/';
   elseif ($path[strlen($path) - 1] != '\\') $path .= '\\';
+  if (!isset($text_domains[$domain])) { $text_domains[$domain] = new stdClass(); }
   $text_domains[$domain]->path = $path;
 }
 
@@ -193,6 +195,7 @@ function _bindtextdomain($domain, $path) {
 function _bind_textdomain_codeset($domain, $codeset) {
 error_reporting(E_ERROR ^ E_NOTICE); //cga20150602 to solve a warning issue after updting php at mapir's server
   global $text_domains;
+  if (!isset($text_domains[$domain])) { $text_domains[$domain] = new stdClass(); }
   $text_domains[$domain]->codeset = $codeset;
 }
 

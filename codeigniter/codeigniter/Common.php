@@ -389,8 +389,10 @@ function _exception_handler($severity, $message, $filepath, $line)
 	 // use version 4 style class functions (without prefixes
 	 // like "public", "private", etc.) you'll get notices telling
 	 // you that these have been deprecated.
+	 // The same applies to deprecation notices (for instance, the
+	 // dynamic properties that this old framework relies on).
 	
-	if ($severity == E_STRICT)
+	if ($severity == E_STRICT || $severity == E_DEPRECATED || $severity == E_USER_DEPRECATED)
 	{
 		return;
 	}

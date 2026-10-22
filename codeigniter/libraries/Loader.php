@@ -51,7 +51,7 @@ class CI_Loader {
 	 */
 	function __construct()
 	{	
-		$this->_ci_is_php5 = (floor(phpversion()) >= 5) ? TRUE : FALSE;
+		$this->_ci_is_php5 = (version_compare(PHP_VERSION, '5.0.0', '>=')) ? TRUE : FALSE;
 		$this->_ci_view_path = APPPATH.'views/';
 		$this->_ci_ob_level  = ob_get_level();
 				

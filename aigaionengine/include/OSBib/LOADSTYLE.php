@@ -33,7 +33,7 @@ class LOADSTYLE
 * @param	$stylesDir	Path to styles directory
 * @return	Sorted assoc. array - keys = filename (less '.xml'), values = Style description.
 */
-	function loadDir($stylesDir)
+	static function loadDir($stylesDir)
 	{
 		$handle = opendir($stylesDir);
 		while(FALSE !== ($dir = readdir($handle)))

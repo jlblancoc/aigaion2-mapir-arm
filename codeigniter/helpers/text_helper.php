@@ -302,7 +302,7 @@ if ( ! function_exists('highlight_code'))
 		// Prior to PHP 5, the highligh function used icky <font> tags
 		// so we'll replace them with <span> tags.
 
-		if (abs(PHP_VERSION) < 5)
+		if (version_compare(PHP_VERSION, '5.0.0', '<'))
 		{
 			$str = str_replace(array('<font ', '</font>'), array('<span ', '</span>'), $str);
 			$str = preg_replace('#color="(.*?)"#', 'style="color: \\1"', $str);

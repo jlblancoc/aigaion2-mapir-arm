@@ -77,7 +77,7 @@ class Controller extends CI_Base {
 
 		// In PHP 5 the Loader class is run as a discreet
 		// class.  In PHP 4 it extends the Controller
-		if (floor(phpversion()) >= 5)
+		if (version_compare(PHP_VERSION, '5.0.0', '>='))
 		{
 			$this->load =& load_class('Loader');
 			$this->load->_ci_autoloader();
