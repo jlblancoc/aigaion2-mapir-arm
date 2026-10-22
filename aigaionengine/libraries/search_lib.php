@@ -446,7 +446,8 @@ class Search_lib {
         $result .= $fieldname." REGEXP '".$prefix_wildcard.mysql_real_escape_string($keyword).$suffix_wildcard."' ";
 */
         //nonexplicit anchoring: match only word beginnings, * for open ends
-        $prefix_wildcard = '[[:<:]]';
+        //(MySQL 8 uses ICU regular expressions, where a word boundary is \b instead of [[:<:]])
+        $prefix_wildcard = '\\\\b';
       }
       $result .= $fieldname." REGEXP '".$prefix_wildcard.mysql_real_escape_string($keyword)."' ";
     }

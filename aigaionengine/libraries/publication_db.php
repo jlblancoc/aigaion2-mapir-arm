@@ -1437,7 +1437,7 @@ class Publication_db {
         foreach ($Q->result() as $R) {
             if ($R->hasread=='y') {
                 $count++;
-                $totalmark += $R->mark;
+                $totalmark += (int) $R->mark;
             }
         }
         $newmark = 0;

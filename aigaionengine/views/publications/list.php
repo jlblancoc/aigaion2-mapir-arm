@@ -91,6 +91,7 @@ include_once('aigaionengine/helpers/my_userfields.php');  // JLBC
     $article_stats_T[$tercile-1]++;
   }
   
+if (!function_exists('my_print_pub_share_link')) {
 function my_print_pub_share_link($desc, $url)
 {
     echo '<li> '.$desc.' (<a href="'.$url.'" target="_blank">view</a>). Embed code:<br/>'.
@@ -98,6 +99,7 @@ function my_print_pub_share_link($desc, $url)
     $url.
     '</code></div>'.
     '</li>';
+}
 }
 
   

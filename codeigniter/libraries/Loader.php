@@ -745,7 +745,7 @@ class CI_Loader {
 			unset($x[count($x)-1]);
 			
 			// Glue the path back together, sans filename
-			$subdir = implode($x, '/').'/';
+			$subdir = implode('/', $x).'/';
 		}
 
 		// We'll test for both lowercase and capitalized versions of the file name
