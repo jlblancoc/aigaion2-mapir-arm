@@ -33,7 +33,7 @@ class CITESTYLE
 {
 // Constructor
 // $output is 'html' or 'rtf'
-	function CITESTYLE($db, $output, $rtfBibExport = FALSE)
+	function __construct($db, $output, $rtfBibExport = FALSE)
 	{
 		$this->db = $db;
 		include_once(OSBIB__SESSION);

@@ -2,9 +2,9 @@
 
 class Front extends Controller {
 
-	function Front()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** A simple front page, for testing. */

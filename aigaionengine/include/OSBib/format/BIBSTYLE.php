@@ -27,7 +27,7 @@ sirfragalot@users.sourceforge.net
 class BIBSTYLE
 {
 // Constructor
-	function BIBSTYLE($db, $output, $export = FALSE, $style = FALSE)
+	function __construct($db, $output, $export = FALSE, $style = FALSE)
 	{
 		$this->db = $db;
 		if($output == 'html')

@@ -39,7 +39,7 @@ class Topic {
     
     var $customfields = null; //NOTE: this array is NOT directly accessible, but should ALWAYS be accessed through getCustomFields()
         
-    function Topic()
+    function __construct()
     {
     }
     

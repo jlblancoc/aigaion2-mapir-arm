@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class FORM
 {
 // constructor
-	function FORM()
+	function __construct()
 	{
 	}
 // print form header with hidden action field

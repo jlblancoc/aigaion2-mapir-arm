@@ -17,7 +17,7 @@ class Group {
     var $rightsprofile_ids  = array();
     //link to the CI base object
 
-    function Group()
+    function __construct()
     {
 
     }

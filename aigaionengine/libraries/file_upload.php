@@ -35,7 +35,7 @@ class File_upload {
 	var $file_copy; // the new name
 	var $message = array();
 
-	function file_upload() {
+	function __construct() {
 		$this->language = "en"; // choice of en, nl, es
 		$this->rename_file = false;
 		$this->ext_string = "";

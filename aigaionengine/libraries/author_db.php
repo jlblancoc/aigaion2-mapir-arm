@@ -9,7 +9,7 @@ These aliases are known as "synonyms": an author can be synonym_of a primary aut
 class Author_db {
   
   
-  function Author_db()
+  function __construct()
   {
   }
 

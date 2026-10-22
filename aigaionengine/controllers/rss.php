@@ -2,9 +2,9 @@
 
 class Rss extends Controller {
 
-	function Rss()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 	
   /**  

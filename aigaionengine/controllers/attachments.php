@@ -2,9 +2,9 @@
 
 class Attachments extends Controller {
 
-	function Attachments()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** There is no default controller for attachments. */

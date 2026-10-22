@@ -40,7 +40,7 @@ Possible flags:
 class Topic_db {
     
   
-    function Topic_db()
+    function __construct()
     {
     }
    

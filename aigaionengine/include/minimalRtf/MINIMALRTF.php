@@ -68,7 +68,7 @@ class MINIMALRTF
 	/**
 	* Constructor method called by user.
 	*/
-	function MINIMALRTF()
+	function __construct()
 	{
 		/**
 		 * some defaults

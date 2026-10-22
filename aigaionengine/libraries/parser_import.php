@@ -18,7 +18,7 @@ class Parser_Import
   
   
   //class constructor
-  function Parser_Import()
+  function __construct()
   {
     $CI = &get_instance();
     $CI->load->library('parsecreators');

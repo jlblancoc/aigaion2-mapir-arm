@@ -2,9 +2,9 @@
 
 class Authors extends Controller {
 
-	function Authors()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 	
 	function index()

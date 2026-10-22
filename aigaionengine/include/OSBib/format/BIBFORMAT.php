@@ -25,7 +25,7 @@ class BIBFORMAT
 /**
 * $dir is the path to STYLEMAP.php etc.
 */
-	function BIBFORMAT($dir = FALSE, $bibtex = FALSE, $preview = FALSE)
+	function __construct($dir = FALSE, $bibtex = FALSE, $preview = FALSE)
 	{
 //05/05/2005 G.GARDEY: add a last "/" to $stylePath if not present.
 		$this->preview = $preview;
@@ -1897,7 +1897,7 @@ class BIBFORMAT
 class BIBTEXCONFIG
 {
 // Constructor
-  function BIBTEXCONFIG()
+  function __construct()
   {
   }
 

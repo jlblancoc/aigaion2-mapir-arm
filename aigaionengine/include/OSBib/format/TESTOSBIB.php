@@ -52,7 +52,7 @@ class TESTOSBIB
 /**
 * Constructor.
 */
-	function TESTOSBIB($style)
+	function __construct($style)
 	{
 		$this->style = $style;
 	}

@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class TABLE
 {
 // constructor
-	function TABLE()
+	function __construct()
 	{
 	}
 // code for starting a table

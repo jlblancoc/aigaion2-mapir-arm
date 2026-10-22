@@ -2,9 +2,9 @@
 
 class Language extends Controller {
 
-	function Language()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** There is no default controller . */

@@ -56,7 +56,7 @@ class TESTOSBIBBIBTEX
 /**
 * Constructor.
 */
-	function TESTOSBIBBIBTEX($style)
+	function __construct($style)
 	{
 		$this->style = $style;
 	}

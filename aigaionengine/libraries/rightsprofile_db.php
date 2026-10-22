@@ -3,7 +3,7 @@
 class Rightsprofile_db {
   
   
-    function Rightsprofile_db()
+    function __construct()
     {
     }
     

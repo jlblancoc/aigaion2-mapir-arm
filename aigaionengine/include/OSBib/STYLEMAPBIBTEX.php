@@ -31,7 +31,7 @@ http://bibliophile.sourceforge.net
 */
 class STYLEMAPBIBTEX
 {
-	function STYLEMAPBIBTEX()
+	function __construct()
 	{
 		$this->loadMap();
 	}

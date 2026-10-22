@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class SESSION
 {
 // Constructor
-	function SESSION()
+	function __construct()
 	{
 		if(isset($_SESSION))
 			$this->sessionVars = &$_SESSION;

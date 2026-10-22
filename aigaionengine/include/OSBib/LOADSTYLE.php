@@ -19,7 +19,7 @@ http://bibliophile.sourceforge.net
 *****/
 class LOADSTYLE
 {
-	function LOADSTYLE()
+	function __construct()
 	{
 	}
 /**

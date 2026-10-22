@@ -2,9 +2,9 @@
 
 class Import extends Controller {
 
-    function Import()
+    function __construct()
     {
-        parent::Controller();
+        parent::__construct();
         
         $this->load->helper('publication');
     }

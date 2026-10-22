@@ -2,9 +2,9 @@
 
 class Bookmarklist extends Controller {
 
-	function Bookmarklist()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Pass control to the bookmarklist/viewlist/ */

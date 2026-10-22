@@ -2,9 +2,9 @@
 
 class Version extends Controller {
 
-	function Version()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/**  */

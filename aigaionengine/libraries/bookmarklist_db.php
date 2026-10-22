@@ -2,7 +2,7 @@
 class Bookmarklist_db {
 
 
-  function Bookmarklist_db()
+  function __construct()
   {
   }
 

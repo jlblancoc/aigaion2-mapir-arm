@@ -2,9 +2,9 @@
 
 class Groups extends Controller {
 
-	function Groups()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** no default controller */

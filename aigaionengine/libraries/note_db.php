@@ -4,7 +4,7 @@ array of Note's. */
 class Note_db {
   
   
-    function Note_db()
+    function __construct()
     {
     }
     

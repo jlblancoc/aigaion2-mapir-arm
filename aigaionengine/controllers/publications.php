@@ -2,9 +2,9 @@
 
 class Publications extends Controller {
 
-	function Publications()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		
 		$this->load->helper('publication');
 	}

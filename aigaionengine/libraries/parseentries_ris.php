@@ -4,7 +4,7 @@
 class Parseentries_ris
 {
   //Parseentries_ris(): initialize the class
-  function Parseentries_ris()
+  function __construct()
   {
     $this->preamble = $this->strings = $this->entries = array();
     $this->currentLine=1;

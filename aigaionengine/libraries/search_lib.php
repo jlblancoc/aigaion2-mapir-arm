@@ -8,7 +8,7 @@ Note, esp. for the simple search:
 */
 class Search_lib {
 
-  function Search_lib()
+  function __construct()
   {
   }
 

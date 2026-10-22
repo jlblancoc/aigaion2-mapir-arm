@@ -22,7 +22,7 @@ http://bibliophile.sourceforge.net
 *****/
 class PREVIEWCITE
 {
-	function PREVIEWCITE($vars)
+	function __construct($vars)
 	{
 		$this->vars = $vars;
 		include_once(OSBIB__MISC);

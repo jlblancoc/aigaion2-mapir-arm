@@ -10,7 +10,7 @@ class Publication_db {
   /** set this to true if you want to enforce merges. (Merge: copy crossref info into publication object) */
   var $enforceMerge = False;
 
-  function Publication_db()
+  function __construct()
   {
   }
 

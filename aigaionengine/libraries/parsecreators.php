@@ -33,7 +33,7 @@ require_once(APPPATH."include/utf8/trim.php");
 
 class Parsecreators
 {
-	function Parsecreators()
+	function __construct()
 	{
 		//if true, separate initials from firstname
 		$this->separateInitials = false;

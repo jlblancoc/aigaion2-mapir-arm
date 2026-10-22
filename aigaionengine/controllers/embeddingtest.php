@@ -4,7 +4,7 @@ class Embeddingtest extends Controller {
 
 	function Authors()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 	
 	function index()

@@ -28,7 +28,7 @@ class CITEFORMAT
 * $dir is the path to STYLEMAP.php etc.
 * $utfDir is a WIKINDX-specific setting
 */
-	function CITEFORMAT(&$bibStyle, $bibStyleProcess)
+	function __construct(&$bibStyle, $bibStyleProcess)
 	{
 		$this->bibStyle = $bibStyle;
 		$this->bibStyleProcess = $bibStyleProcess;

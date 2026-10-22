@@ -26,7 +26,7 @@ http://bibliophile.sourceforge.net
 class CLOSE
 {
 // Constructor
-	function CLOSE($pString = FALSE, $helpLink = TRUE)
+	function __construct($pString = FALSE, $helpLink = TRUE)
 	{
 		include_once(OSBIB__MESSAGES);
 		$this->messages = new MESSAGES();

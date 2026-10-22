@@ -18,7 +18,7 @@ http://bibliophile.sourceforge.net
 ********************************/
 class PARSEXML
 {
-	function PARSEXML()
+	function __construct()
 	{
 	}
 // Grab a complete XML entry

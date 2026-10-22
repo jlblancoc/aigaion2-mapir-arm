@@ -2,9 +2,9 @@
 
 class Help extends Controller {
 
-	function Help()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/**  */

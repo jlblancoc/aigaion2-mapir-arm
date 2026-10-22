@@ -3,7 +3,7 @@
 class Keyword_db {
 
 
-  function Keyword_db()
+  function __construct()
   {
   }
 

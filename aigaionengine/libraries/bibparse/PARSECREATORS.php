@@ -32,7 +32,7 @@ http://bibliophile.sourceforge.net
 
 class Parsecreators
 {
-	function Parsecreators()
+	function __construct()
 	{
 		//if true, separate initials from firstname
 		$this->separateInitials = false;

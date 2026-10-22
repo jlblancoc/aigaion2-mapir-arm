@@ -25,7 +25,7 @@ class EXPORTFILTER
 /**
 * $dir is the path to STYLEMAP.php etc.
 */
-	function EXPORTFILTER(&$ref, $output)
+	function __construct(&$ref, $output)
 	{
 	  $this->bibformat =& $ref;
 	  $this->format = $output;

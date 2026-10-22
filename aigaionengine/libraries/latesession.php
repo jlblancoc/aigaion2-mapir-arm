@@ -8,7 +8,7 @@ class LateSession {
     var $bSessionStarted = False;
 
     // constructor
-    function LateSession() {
+    function __construct() {
     }
     
     /** Save a session variable. */

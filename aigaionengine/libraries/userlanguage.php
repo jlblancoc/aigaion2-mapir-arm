@@ -1255,7 +1255,7 @@ class Userlanguage {
    * @param array|string $accept overwrite user's accept-language header
    * @param float $min quality factor for partial hits
    */
-  function Userlanguage ($supported=false, $accept=false, $min = 0.9) {
+  function __construct ($supported=false, $accept=false, $min = 0.9) {
     $this->setSupported ($supported);
     $this->setAccept ($accept);
     $this->min = $this->normalize ($min);

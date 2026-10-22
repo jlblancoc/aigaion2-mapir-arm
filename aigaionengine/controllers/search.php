@@ -2,9 +2,9 @@
 
 class Search extends Controller {
 
-	function Search()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Default: advanced search form */

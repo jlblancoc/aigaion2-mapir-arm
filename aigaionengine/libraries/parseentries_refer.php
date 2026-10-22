@@ -4,7 +4,7 @@
 class Parseentries_refer
 {
   //Parseentries_refer(): initialize the class
-  function Parseentries_refer()
+  function __construct()
   {
     $this->preamble = $this->strings = $this->entries = array();
     $this->currentLine=1;

@@ -11,7 +11,7 @@ then update the database with new settings
 class Siteconfig_db {
     
   
-    function Siteconfig_db()
+    function __construct()
     {
     }
      

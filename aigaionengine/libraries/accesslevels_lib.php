@@ -20,7 +20,7 @@ the user has publication_edit or other necessary rights.
 */
 class Accesslevels_lib {
   
-    function Accesslevels_lib()
+    function __construct()
     {
     }
 

@@ -8,7 +8,7 @@ class SiteConfig {
     //don't access directly!
     var $configSettings = array();
     
-    function SiteConfig()
+    function __construct()
     {
     }
     

@@ -2,9 +2,9 @@
 
 class Repostform extends Controller {
 
-	function Repostform()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** This controller allows one to repost a form that failed because the user was logged out. */

@@ -6,7 +6,7 @@ BY OYVIND HAUGE
 Creates and send an email with the attachments.
 */
 class Email_Export {
-  function Email_Export()
+  function __construct()
   {
   }
 
