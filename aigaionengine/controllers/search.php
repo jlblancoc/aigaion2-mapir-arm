@@ -140,7 +140,7 @@ class Search extends Controller {
       
       
       $this->load->library('search_lib');
-      if ((count($doConditions>0))||(count($dontConditions>0))) {
+      if ((count($doConditions)>0)||(count($dontConditions)>0)) {
         $searchresults = $this->search_lib->topicConditionSearch($query,$searchoptions,$doConditions,$dontConditions,$anyAll);
       } else {
 	      $searchresults = $this->search_lib->simpleSearch($query,$searchoptions,"");

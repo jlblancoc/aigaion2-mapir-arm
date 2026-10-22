@@ -480,7 +480,7 @@ if ($siteconfig->getConfigSetting("USE_UPLOADED_LOGO")=="TRUE")
         <tr><td colspan=2>Current logo:</td></tr>
         <tr><td colspan=2>
 <?php
-    if (file_exists(AIGAION_ROOT_DIR.'/custom_logo.jpg')) {
+    if (file_exists(dirname(FCPATH).'/custom_logo.jpg')) {
         echo '<img border=0 src="'.AIGAION_ROOT_URL.'/custom_logo.jpg">';
     } else {
         echo '&lt;no logo uploaded&gt;';

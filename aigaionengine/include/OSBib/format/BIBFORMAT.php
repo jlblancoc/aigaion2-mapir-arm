@@ -449,10 +449,11 @@ class BIBFORMAT
 */
 		if($this->bibtex)
 		{
+			$typeMap = (isset($this->styleMap->$type) && is_array($this->styleMap->$type)) ? $this->styleMap->$type : array();
 			foreach($row as $field => $value)
 			{
-				if(array_key_exists($field, $this->styleMap->$type) && 
-					!array_key_exists($this->styleMap->{$type}[$field], $this->item))
+				if(array_key_exists($field, $typeMap) && 
+					!array_key_exists($typeMap[$field], $this->item))
 					$this->addItem($row[$field], $field);
 			}
 		}
@@ -999,6 +1000,7 @@ class BIBFORMAT
 			$italics = 'otherCreatorListAbbreviationItalic';
 		}
 		$type = $this->type;
+		$typeStyle = (isset($this->$type) && is_array($this->$type)) ? $this->$type : array();
 /**
 * Set default plural behaviour for creator lists
 */
@@ -1071,34 +1073,34 @@ class BIBFORMAT
 				$rewriteCreatorFieldBefore = $nameType . "_remainderString_before";
 				$rewriteCreatorFieldEach = $nameType . "_remainderString_each";
 			}
-			if(array_key_exists($rewriteCreatorField, $this->$type))
+			if(array_key_exists($rewriteCreatorField, $typeStyle))
 			{
 				if($firstInList)
 				{
-					if(array_key_exists($rewriteCreatorFieldBefore, $this->$type))
-						$nameString = $this->{$type}[$rewriteCreatorField] . $nameString;
+					if(array_key_exists($rewriteCreatorFieldBefore, $typeStyle))
+						$nameString = $typeStyle[$rewriteCreatorField] . $nameString;
 					else
-						$nameString .= $this->{$type}[$rewriteCreatorField];
+						$nameString .= $typeStyle[$rewriteCreatorField];
 					$firstInList = FALSE;
 				}
-				else if(array_key_exists($rewriteCreatorFieldEach, $this->$type))
+				else if(array_key_exists($rewriteCreatorFieldEach, $typeStyle))
 				{
-					if(array_key_exists($rewriteCreatorFieldBefore, $this->$type))
-						$nameString = $this->{$type}[$rewriteCreatorField] . $nameString;
+					if(array_key_exists($rewriteCreatorFieldBefore, $typeStyle))
+						$nameString = $typeStyle[$rewriteCreatorField] . $nameString;
 					else
-						$nameString .= $this->{$type}[$rewriteCreatorField];
+						$nameString .= $typeStyle[$rewriteCreatorField];
 //print "$nameString<P>";
 				}
 				else
 				{
-					if(!$rewriteCreatorBeforeDone && array_key_exists($rewriteCreatorFieldBefore, $this->$type))
+					if(!$rewriteCreatorBeforeDone && array_key_exists($rewriteCreatorFieldBefore, $typeStyle))
 					{
-						$nameString = $this->{$type}[$rewriteCreatorField] . $nameString;
+						$nameString = $typeStyle[$rewriteCreatorField] . $nameString;
 						$rewriteCreatorBeforeDone = TRUE;
 					}
 					else if(!$rewriteCreatorBeforeDone && 
-						!array_key_exists($rewriteCreatorFieldEach, $this->$type))
-						$rewriteCreatorFinal = $this->{$type}[$rewriteCreatorField];
+						!array_key_exists($rewriteCreatorFieldEach, $typeStyle))
+						$rewriteCreatorFinal = $typeStyle[$rewriteCreatorField];
 				}
 			}
 //print "$nameString<P>";

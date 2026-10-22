@@ -235,6 +235,7 @@ class Search_lib {
     if ($keywordQ->num_rows()>0) {
       $arrayOfKeywords = array();
       foreach ($keywordQ->result() as $R) {
+        $kw = new stdClass();
         $kw->keyword_id = $R->keyword_id;
         $kw->keyword = $R->keyword;
         $arrayOfKeywords[] = $kw;
