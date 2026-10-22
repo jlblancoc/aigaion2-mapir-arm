@@ -1,5 +1,12 @@
 <?php
 
+	// This script does not go through index.php, so the root URL of Aigaion is derived from the request
+	if (!defined('AIGAION_ROOT_URL'))
+	{
+		$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+		define('AIGAION_ROOT_URL', $scheme.'://'.$_SERVER['HTTP_HOST'].rtrim(dirname($_SERVER['SCRIPT_NAME']), '/').'/');
+	}
+
 /*
 	Page for exporting aigaion data to other sites.
 

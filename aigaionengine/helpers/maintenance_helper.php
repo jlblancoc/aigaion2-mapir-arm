@@ -42,7 +42,7 @@ function checkPasswords() {
       }
     }
   }
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -60,7 +60,7 @@ function checkNotes() {
 
   $result .= "<tr><td>".__("Checking note crossreference consistency")."...</td>";
   $checkResult = checkNoteXrefIDs();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -78,7 +78,7 @@ function checkAttachments() {
   #check attachments where file on server is missing
   $result .= "<tr><td>".__("Check missing attachments")."...</td>";
   $checkResult = checkMissingFiles();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -105,7 +105,7 @@ function checkAttachments() {
   #check for unknown files
   $result .= "<tr><td>".__("Check unknown files")."...</td>";
   $checkResult = checkUnknownFiles();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -124,7 +124,7 @@ function checkAuthors() {
   #check for empty author names
   $result .= "<tr><td>".__("Checking empty author names")."...</td>";
   $checkResult = checkEmptyAuthorNames();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -167,7 +167,7 @@ function checkAuthors() {
   #check for nonpublishing authors
   $result .= "<tr><td>".__("Checking for authors that do not publish")."...</td>\n";
   $checkResult = checkNonPublishingAuthors();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -235,7 +235,7 @@ function checkKeywords() {
   #check for nonpublishing authors
   $result .= "<tr><td>".__("Checking for unused keywords")."...</td>\n";
   $checkResult = checkUnusedKeywords();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -283,7 +283,7 @@ function checkTopics() {
   //check for parentless topics
   $result .= "<tr><td>".__("Check topics without parent")."...</td>";
   $checkResult = checkTopicParents();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
@@ -297,7 +297,7 @@ function checkTopics() {
   //check for empty topics
   $result .= "<tr><td>".__("Checking for empty topics")."...</td>";
   $checkResult = checkEmptyTopics();
-  if ($checkResult != "")
+  if ($checkResult != "" && $checkResult !== 0)
   {
     $result .= "<td><span class=errortext>".utf8_strtoupper(__("Alert"))."</span></td></tr>\n<tr><td colspan=2>";
     $result .= "<div class='message'>";
