@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class SUCCESS
 {
 // Constructor
-	function SUCCESS()
+	function __construct()
 	{
 	}
 /**

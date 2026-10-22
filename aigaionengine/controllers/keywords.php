@@ -2,9 +2,9 @@
 
 class Keywords extends Controller {
 
-	function Keywords()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 		
 		$this->load->helper('publication');
 	}

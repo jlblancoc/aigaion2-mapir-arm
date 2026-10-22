@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class MISC
 {
 // Constructor
-	function MISC()
+	function __construct()
 	{
 	}
 // <hr>

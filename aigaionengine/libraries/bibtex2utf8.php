@@ -70,7 +70,7 @@ class Bibtex2utf8 {
     var $specialChars = array();
     var $specialCharsBack = array();
     
-    function Bibtex2utf8()
+    function __construct()
     {
       $this->init();
     }

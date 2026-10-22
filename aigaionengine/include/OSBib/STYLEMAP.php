@@ -15,7 +15,7 @@ http://bibliophile.sourceforge.net
 ********************************/
 class STYLEMAP
 {
-	function STYLEMAP()
+	function __construct()
 	{
 		$this->loadMap();
 	}

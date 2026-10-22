@@ -2,9 +2,9 @@
 
 class Export extends Controller {
 
-	function Export()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Pass control to the export/all/ */

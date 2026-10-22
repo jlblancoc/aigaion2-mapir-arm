@@ -100,7 +100,7 @@ class Authldap {
      * @param string the username to authenticate with when searching if anonymous binding is not supported
      * @param string the password to authenticate with when searching if anonymous binding is not supported
      */
-    function AuthLdap ($sLdapServer="", $sBaseDN="", $sServerType="", $sDomain = "", $searchUser = "", $searchPassword = "") {
+    function __construct ($sLdapServer="", $sBaseDN="", $sServerType="", $sDomain = "", $searchUser = "", $searchPassword = "") {
         $this->server = array($sLdapServer);
         $this->dn = $sBaseDN;
         $this->serverType = $sServerType;

@@ -6,7 +6,7 @@ site settings page is provided.
 */
 class Customfields_db {
 
-  function Customfields_db()
+  function __construct()
   {
   }
 

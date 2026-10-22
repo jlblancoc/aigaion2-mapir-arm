@@ -10,7 +10,7 @@ class Publication_db {
   /** set this to true if you want to enforce merges. (Merge: copy crossref info into publication object) */
   var $enforceMerge = False;
 
-  function Publication_db()
+  function __construct()
   {
   }
 
@@ -246,6 +246,7 @@ class Publication_db {
           if ((substr($keyword, -1, 1) == ',') || (substr($keyword, -1, 1) == ';'))
             $keyword = substr($keyword, 0, strlen($keyword) - 1);
           
+          $kw = new stdClass();
           $kw->keyword = $keyword;
           $keyword_array[] = $kw;
           unset($kw);
@@ -1436,7 +1437,7 @@ class Publication_db {
         foreach ($Q->result() as $R) {
             if ($R->hasread=='y') {
                 $count++;
-                $totalmark += $R->mark;
+                $totalmark += (int) $R->mark;
             }
         }
         $newmark = 0;

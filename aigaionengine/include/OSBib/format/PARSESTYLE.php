@@ -15,7 +15,7 @@ http://bibliophile.sourceforge.net
 ********************************/
 class PARSESTYLE
 {
-	function PARSESTYLE()
+	function __construct()
 	{
 	}
 	function findAlternateFields($subjectArray, $search)

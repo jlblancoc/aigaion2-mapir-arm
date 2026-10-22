@@ -2,9 +2,9 @@
 
 class Readapi extends Controller {
 
-	function Readapi()
+	function __construct()
 	{
-		parent::Controller();
+		parent::__construct();
 	}
 	
 	function index()

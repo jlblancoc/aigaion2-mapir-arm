@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class HELPSTYLE
 {
 // Constructor
-	function HELPSTYLE()
+	function __construct()
 	{
 		include_once(OSBIB__MISC);
 ////////////////////////////////////////////////////////////////////////////////////

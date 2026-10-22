@@ -44,7 +44,7 @@ class CI_Exceptions {
 						E_USER_ERROR		=>	'User Error',
 						E_USER_WARNING		=>	'User Warning',
 						E_USER_NOTICE		=>	'User Notice',
-						E_STRICT			=>	'Runtime Notice'
+						2048				=>	'Runtime Notice' // E_STRICT
 					);
 
 
@@ -52,7 +52,7 @@ class CI_Exceptions {
 	 * Constructor
 	 *
 	 */	
-	function CI_Exceptions()
+	function __construct()
 	{
 		$this->ob_level = ob_get_level();
 		// Note:  Do not log messages from this constructor.

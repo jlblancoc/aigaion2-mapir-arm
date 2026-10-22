@@ -7,9 +7,9 @@
  */ 
 class Logintegration extends Controller {
 
-	function Logintegration()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** no default */

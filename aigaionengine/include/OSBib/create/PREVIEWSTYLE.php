@@ -24,7 +24,7 @@ http://bibliophile.sourceforge.net
 *****/
 class PREVIEWSTYLE
 {
-	function PREVIEWSTYLE($vars)
+	function __construct($vars)
 	{
 		$this->vars = $vars;
 		include_once(OSBIB__BIBFORMAT);

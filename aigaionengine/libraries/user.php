@@ -52,7 +52,7 @@ class User {
     //var $full_subscribed_tree    = null; //this is the tree as it is also filled with the topics from the group!
     //or dow we want to store the topics as a list of IDs?
     
-    function User()
+    function __construct()
     {
 
     }

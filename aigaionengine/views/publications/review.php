@@ -114,7 +114,7 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
       }
     }
 
-    echo form_hidden('pubform_authors', implode($authors, ","))."\n";
+    echo form_hidden('pubform_authors', implode(",", $authors))."\n";
 
     //editor review
     $editors = array();
@@ -126,7 +126,7 @@ $formAttributes     = array('ID' => 'publication_'.$publication->pub_id.'_review
       }
     }
 
-    echo form_hidden('pubform_editors', implode($editors, ","))."\n";
+    echo form_hidden('pubform_editors', implode(",", $editors))."\n";
 
 ?>
   </table>

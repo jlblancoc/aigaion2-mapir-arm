@@ -3,7 +3,7 @@
 class Group_db {
   
   
-    function Group_db()
+    function __construct()
     {
     }
     

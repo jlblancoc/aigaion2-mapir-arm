@@ -1,6 +1,10 @@
 # aigaion2-mapir-arm
 Aigaion2 publication PHP site - mods for MAPIR / ARM groups
 
+## Requirements
+
+PHP 7.4 up to 8.4 with the `mysqli` extension (`gd`, `mbstring` and `xml` are recommended) and MySQL 5.7 or later (tested with MySQL 8.0).
+
 ## Partes importantes
 
 Exportadores:

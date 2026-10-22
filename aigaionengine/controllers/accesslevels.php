@@ -4,7 +4,7 @@ class Accesslevels extends Controller {
 
   function Arrangements()
   {
-    parent::Controller();
+    parent::__construct();
   }
 
   /** There is no default controller . */

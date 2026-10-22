@@ -26,7 +26,7 @@ http://bibliophile.sourceforge.net
 class CLOSEPOPUP
 {
 // Constructor
-	function CLOSEPOPUP($pString = FALSE)
+	function __construct($pString = FALSE)
 	{
 		include_once(OSBIB__MESSAGES);
 		$this->messages = new MESSAGES();

@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class ADMINSTYLE
 {
 // Constructor
-	function ADMINSTYLE($vars)
+	function __construct($vars)
 	{$this->footnotePages = FALSE;
 		$this->vars = $vars;
 /**

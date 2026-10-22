@@ -18,7 +18,7 @@ class Note {
     var $pub_id             = -1;
     var $xref_ids       = array();
     
-    function Note()
+    function __construct()
     {
     }
     

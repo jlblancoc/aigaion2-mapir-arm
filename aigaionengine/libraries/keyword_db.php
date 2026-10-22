@@ -3,7 +3,7 @@
 class Keyword_db {
 
 
-  function Keyword_db()
+  function __construct()
   {
   }
 
@@ -25,6 +25,7 @@ class Keyword_db {
   
   function getFromRow($R)
   {
+    $kw = new stdClass();
     foreach ($R as $key => $value)
     {
       $kw->$key = $value;
@@ -46,6 +47,7 @@ class Keyword_db {
                    );
     
     //retrieve all fields
+    $keyword = new stdClass();
     foreach ($fields as $key)
     {
       $keyword->$key = trim($CI->input->post($key));
@@ -135,9 +137,9 @@ class Keyword_db {
     else
       $existing_id = -1;
       
-    if (sizeof($cleankeyword) < 4)
+    if (strlen($cleankeyword) < 4)
       $dist_threshold = 2;
-    else if (sizeof($cleankeyword) < 8)
+    else if (strlen($cleankeyword) < 8)
       $dist_threshold = 3;
     else
       $dist_threshold = 4;
@@ -254,6 +256,7 @@ class Keyword_db {
     if ($keyword_id)
     {
       //load the keyword
+      $kw = new stdClass();
       $kw->keyword_id = $keyword_id;
       $kw->keyword = $keyword;
       $kw->cleankeyword = $cleankeyword;

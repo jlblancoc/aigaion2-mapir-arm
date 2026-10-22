@@ -415,7 +415,7 @@ class Scriptaculous extends Prototype {
 
 	var $TOGGLE_EFFECTS = array('toggle_appear', 'toggle_slide','toggle_blind');
 
-	function Scriptaculous()
+	function __construct()
   {
 	}
 

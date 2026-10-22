@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class FORMMISC
 {
 // constructor
-	function FORMMISC()
+	function __construct()
 	{
 	}
 // reduce the size of long text (in select boxes usually) to keep web browser display tidy

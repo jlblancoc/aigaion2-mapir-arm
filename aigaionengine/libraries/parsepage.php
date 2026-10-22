@@ -27,7 +27,7 @@ http://bibliophile.sourceforge.net
 class Parsepage
 {
 	// Constructor
-	function Parsepage()
+	function __construct()
 	{
 		$this->completeField = TRUE;
 	}

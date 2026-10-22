@@ -2,9 +2,9 @@
 
 class Users extends Controller {
 
-	function Users()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Pass control to the users/edit/(logged user) controller */

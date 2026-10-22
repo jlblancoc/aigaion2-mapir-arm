@@ -19,7 +19,7 @@ class Pipe
     //  Default constructor - requires names of the requested controller and method.
     //-------------------------------------
 
-   	function Pipe($filters, $controller_name, $method_name) {
+   	function __construct($filters, $controller_name, $method_name) {
 		$this->filters         = $filters;
 		$this->controller_name = $controller_name;
 		$this->method_name     = $method_name;

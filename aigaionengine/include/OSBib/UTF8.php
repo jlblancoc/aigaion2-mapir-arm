@@ -21,7 +21,7 @@ http://bibliophile.sourceforge.net
 class UTF8
 {
 // Constructor
-	function UTF8()
+	function __construct()
 	{
 	  $this->loadVars();
 	}

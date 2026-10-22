@@ -23,7 +23,7 @@ var $customfields = null; //NOTE: this array is NOT directly accessible, but sho
 
 
   //class constructor
-  function Author()
+  function __construct()
   {
     $CI =&get_instance();
   }

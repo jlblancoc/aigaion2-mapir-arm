@@ -2,9 +2,9 @@
 
 class Login extends Controller {
  
-    function Login()
+    function __construct()
     {
-        parent::Controller();    
+        parent::__construct();    
     }
     
     /** The main controller function will of course show the login form.

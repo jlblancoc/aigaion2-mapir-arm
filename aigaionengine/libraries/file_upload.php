@@ -35,7 +35,7 @@ class File_upload {
 	var $file_copy; // the new name
 	var $message = array();
 
-	function file_upload() {
+	function __construct() {
 		$this->language = "en"; // choice of en, nl, es
 		$this->rename_file = false;
 		$this->ext_string = "";
@@ -91,7 +91,7 @@ class File_upload {
 				return false;
 			} else {
 				if ($this->do_filename_check == "y") {
-					if (ereg("^[a-zA-Z0-9_]*\.[a-zA-Z]{3,4}$", $the_name)) {
+					if (preg_match('/^[a-zA-Z0-9_]*\.[a-zA-Z]{3,4}$/', $the_name)) {
 						return true;
 					} else {
 						$this->message[] = $this->error_text(12);

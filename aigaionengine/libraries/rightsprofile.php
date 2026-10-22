@@ -12,7 +12,7 @@ class Rightsprofile {
     var $rights     = array(); //an array of ($right_name)
     //link to the CI base object
 
-    function Rightsprofile()
+    function __construct()
     {
 
     }

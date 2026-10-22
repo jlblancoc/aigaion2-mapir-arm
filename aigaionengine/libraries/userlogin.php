@@ -132,7 +132,7 @@ class UserLogin {
     /* ================ Constructor ================ */
     
     /** Initially, the user is NOT logged in. */
-    function UserLogin() {
+    function __construct() {
         //...no construction stuff needed, really. everything happens when the user logs in.
     }
     

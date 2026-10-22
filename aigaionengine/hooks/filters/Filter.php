@@ -13,7 +13,7 @@ class Filter {
 	* Default constructor.
 	* Allows to set filter configuration.
 	*/
-	function Filter($config = array())
+	function __construct($config = array())
 	{
 		$this->config = $config;
 	}

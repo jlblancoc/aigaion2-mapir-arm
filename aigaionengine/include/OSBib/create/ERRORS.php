@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class ERRORS
 {
 // Constructor
-	function ERRORS()
+	function __construct()
 	{
 	}
 /**

@@ -29,7 +29,7 @@ sirfragalot@users.sourceforge.net
 class HELPSTYLE_en
 {
 // Constructor
-	function HELPSTYLE_en()
+	function __construct()
 	{
 		$linkSfWikindx = MISC::a("link", "WIKINDX Sourceforge Project", 
 			"http://sourceforge.net/projects/wikindx/", "_blank");

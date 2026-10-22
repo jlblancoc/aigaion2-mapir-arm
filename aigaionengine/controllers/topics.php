@@ -2,9 +2,9 @@
 
 class Topics extends Controller {
 
-	function Topics()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Pass control to the topics/browse/ controller */

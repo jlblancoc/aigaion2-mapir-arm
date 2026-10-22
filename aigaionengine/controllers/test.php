@@ -15,9 +15,9 @@
  */      
 class Test extends Controller {
 
-	function Test()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	function verbose() {

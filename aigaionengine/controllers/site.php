@@ -2,9 +2,9 @@
 
 class Site extends Controller {
 
-	function Site()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** Pass control to the site/configure/ controller */

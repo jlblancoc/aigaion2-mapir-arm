@@ -24,7 +24,7 @@ http://bibliophile.sourceforge.net
 class INIT
 {
 // Constructor
-	function INIT()
+	function __construct()
 	{
 // Set to error_reporting(0) before release!!!!!!!!!
 // For debugging, set to E_ALL

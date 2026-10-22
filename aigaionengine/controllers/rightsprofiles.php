@@ -2,9 +2,9 @@
 
 class Rightsprofiles extends Controller {
 
-	function Rightsprofiles()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** No default controller */

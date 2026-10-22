@@ -25,7 +25,7 @@ http://bibliophile.sourceforge.net
 class MESSAGES
 {
 // Constructor
-	function MESSAGES()
+	function __construct()
 	{
 	}
 /**

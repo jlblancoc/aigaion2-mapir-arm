@@ -2,9 +2,9 @@
 
 class Notes extends Controller {
 
-	function Notes()
+	function __construct()
 	{
-		parent::Controller();	
+		parent::__construct();	
 	}
 	
 	/** no default */
