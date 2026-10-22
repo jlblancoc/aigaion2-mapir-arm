@@ -392,7 +392,8 @@ function _exception_handler($severity, $message, $filepath, $line)
 	 // The same applies to deprecation notices (for instance, the
 	 // dynamic properties that this old framework relies on).
 	
-	if ($severity == E_STRICT || $severity == E_DEPRECATED || $severity == E_USER_DEPRECATED)
+	// 2048 is E_STRICT, whose constant is deprecated since PHP 8.4
+	if ($severity == 2048 || $severity == E_DEPRECATED || $severity == E_USER_DEPRECATED)
 	{
 		return;
 	}
